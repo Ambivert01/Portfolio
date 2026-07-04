@@ -1,0 +1,153 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* dark: deep space navy */
+  --bg: 230 28% 5%;
+  --bg-elevated: 232 24% 8%;
+  --bg-inset: 232 20% 12%;
+  --fg: 220 20% 94%;
+  --fg-muted: 220 12% 62%;
+  --fg-subtle: 220 10% 42%;
+  --border: 232 18% 16%;
+  /* primary accent: electric violet */
+  --accent: 262 90% 66%;
+  /* secondary accent: cyan */
+  --accent2: 188 90% 52%;
+  /* kept for signal dots */
+  --signal-amber: 38 92% 55%;
+  --signal-green: 152 60% 48%;
+  --signal-red: 355 70% 55%;
+}
+
+.light {
+  /* light: warm slate with depth */
+  --bg: 220 18% 94%;
+  --bg-elevated: 220 20% 98%;
+  --bg-inset: 220 15% 88%;
+  --fg: 230 30% 10%;
+  --fg-muted: 230 15% 38%;
+  --fg-subtle: 230 12% 55%;
+  --border: 220 18% 80%;
+  /* primary accent: rich indigo */
+  --accent: 248 80% 58%;
+  /* secondary accent: teal — no more pink */
+  --accent2: 174 72% 40%;
+  --signal-amber: 32 85% 42%;
+  --signal-green: 152 55% 32%;
+  --signal-red: 355 65% 45%;
+}
+
+* {
+  border-color: hsl(var(--border));
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+html.reduce-motion *,
+html.reduce-motion *::before,
+html.reduce-motion *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+}
+
+body {
+  background-color: hsl(var(--bg));
+  color: hsl(var(--fg));
+  font-feature-settings: "ss01" on, "cv01" on;
+}
+
+::selection {
+  background-color: hsl(var(--accent) / 0.28);
+  color: hsl(var(--fg));
+}
+
+/* signature: rail track divider */
+.track-rule {
+  position: relative;
+  height: 2px;
+  background-image: repeating-linear-gradient(
+    90deg,
+    hsl(var(--border)) 0px,
+    hsl(var(--border)) 16px,
+    transparent 16px,
+    transparent 24px
+  );
+}
+
+.track-rule::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  height: 2px;
+  width: 60px;
+  background: linear-gradient(90deg, hsl(var(--accent)), hsl(var(--accent2)));
+  animation: track-flow 6s linear infinite;
+  filter: blur(0.5px);
+}
+
+.focus-ring {
+  outline: none;
+}
+.focus-ring:focus-visible {
+  outline: 2px solid hsl(var(--accent));
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.font-tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* glass surface */
+.glass {
+  background: hsl(var(--bg-elevated) / 0.6);
+  backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid hsl(var(--border) / 0.5);
+}
+
+/* animated mesh gradient - hero backdrop */
+.mesh-gradient {
+  background-image:
+    radial-gradient(at 15% 25%, hsl(var(--accent) / 0.22) 0px, transparent 55%),
+    radial-gradient(at 85% 5%, hsl(var(--accent2) / 0.18) 0px, transparent 50%),
+    radial-gradient(at 55% 85%, hsl(var(--accent) / 0.12) 0px, transparent 50%),
+    radial-gradient(at 75% 60%, hsl(var(--accent2) / 0.10) 0px, transparent 45%);
+  background-size: 200% 200%;
+  animation: mesh-move 18s ease-in-out infinite;
+}
+
+@keyframes mesh-move {
+  0%, 100% { background-position: 0% 0%, 100% 0%, 50% 100%; }
+  50% { background-position: 20% 30%, 80% 20%, 40% 80%; }
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, hsl(var(--accent)), hsl(var(--accent2)));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* glow utility for accent elements */
+.glow-accent {
+  box-shadow: 0 0 24px hsl(var(--accent) / 0.35), 0 0 8px hsl(var(--accent) / 0.2);
+}
+.glow-accent2 {
+  box-shadow: 0 0 24px hsl(var(--accent2) / 0.35), 0 0 8px hsl(var(--accent2) / 0.2);
+}

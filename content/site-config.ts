@@ -1,0 +1,25 @@
+export const siteConfig = {
+  name: "Parth",
+  role: "AI / Infrastructure Systems Engineer",
+  tagline: "Builds AI systems for critical infrastructure that have to be right, not just fast.",
+  description:
+    "Parth designs and ships production-grade AI systems for infrastructure-critical domains — currently building RailMind, an AI-powered railway infrastructure management platform.",
+  url: "https://example.com",
+  email: "hello@example.com",
+  phone: "[+91 XXXXX XXXXX]",
+  location: "India",
+  bookingUrl: "https://cal.com/yourhandle",
+  social: {
+    github: "https://github.com/yourhandle",
+    linkedin: "https://linkedin.com/in/yourhandle",
+    twitter: "https://twitter.com/yourhandle",
+    medium: "https://medium.com/@yourhandle",
+    devto: "https://dev.to/yourhandle",
+    youtube: "https://youtube.com/@yourhandle",
+    instagram: "https://instagram.com/yourhandle",
+    behance: "https://behance.net/yourhandle",
+    dribbble: "https://dribbble.com/yourhandle",
+  },
+  resumeUrl: "/resume.pdf",
+  availability: "Open to select opportunities",
+};
