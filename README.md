@@ -1,7 +1,7 @@
 # Portfolio
 
 Personal portfolio — Next.js 15 · TypeScript · Tailwind CSS · Framer Motion.  
-Live: **[portfolio-six-ashy-71.vercel.app](https://portfolio-six-ashy-71.vercel.app)**
+Live: **[PARTH'S PORTFOLIO](https://portfolio-ambivert01.vercel.app)**
 
 ---
 
