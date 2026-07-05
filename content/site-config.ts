@@ -1,9 +1,9 @@
 export const siteConfig = {
   name: "Parth",
   role: "AI / Infrastructure Systems Engineer",
-  tagline: "Builds AI systems for critical infrastructure that have to be right, not just fast.",
+  tagline: "Builds systems for critical infrastructure that have to be right by covering critical edge cases, not just fast .",
   description:
-    "Parth designs and ships production-grade AI systems for infrastructure-critical domains — currently building RailMind, an AI-powered railway infrastructure management platform.",
+    "Parth designs and ships production-grade systems for infrastructure-critical domains — currently building AidFlow, Disaster Management & Transparency System.",
   url: "https://example.com",
   email: "prajapatiparth01.ab@gmail.com",
   phone: "[+91 XXXXX XXXXX]",
@@ -16,7 +16,7 @@ export const siteConfig = {
     medium: "https://medium.com/@yourhandle",
     devto: "https://dev.to/yourhandle",
     youtube: "https://youtube.com/@yourhandle",
-    instagram: "https://instagram.com/yourhandle",
+    instagram: "https://www.instagram.com/parthprajapati01",
     behance: "https://behance.net/yourhandle",
     dribbble: "https://dribbble.com/yourhandle",
   },

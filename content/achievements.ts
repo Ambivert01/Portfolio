@@ -12,8 +12,8 @@ export const achievements: Achievement[] = [
 ];
 
 export const now = {
-  building: "RailMind — production hardening and demo rollout",
-  learning: "[Currently learning]",
+  building: "AidFlow, Disaster Management & Transparency System",
+  learning: "IELTS",
   reading: "[Currently reading]",
   updatedAt: "2026-07",
 };

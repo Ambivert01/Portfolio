@@ -10,7 +10,12 @@ export default function StackPage() {
   return (
     <>
       <div className="mx-auto max-w-content px-6 pt-20">
-        <RevealOnScroll><h1 className="font-display text-4xl font-medium">Stack</h1></RevealOnScroll>
+        <RevealOnScroll>
+          <h1 className="font-display text-4xl font-medium">Stack</h1>
+          <p className="mt-3 max-w-xl text-fg-muted">
+            &ldquo;Use the right tool for the job — then master it.&rdquo;
+          </p>
+        </RevealOnScroll>
       </div>
       <Stack />
       <CodingProfilesSection />

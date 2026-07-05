@@ -1,18 +1,26 @@
 export const skillGroups: { group: string; items: string[] }[] = [
   {
     group: "Languages",
-    items: ["TypeScript", "JavaScript", "Python", "SQL", "Cypher"],
+    items: ["JavaScript", "TypeScript", "Python", "C++", "C", "C#", "SQL", "HTML", "CSS"],
   },
   {
-    group: "Frameworks",
-    items: ["Next.js", "NestJS", "React", "LangGraph", "Tailwind CSS"],
+    group: "Frontend",
+    items: ["React", "Next.js", "Tailwind CSS"],
   },
   {
-    group: "Data & AI",
-    items: ["PostgreSQL", "Neo4j", "Qdrant", "Redis", "LLM agent design", "RAG systems"],
+    group: "Backend",
+    items: ["Node.js", "Express", "REST APIs", "NestJS"],
+  },
+  {
+    group: "Databases",
+    items: ["MongoDB", "Mongoose", "PostgreSQL", "MySQL", "Redis", "Neo4j"],
+  },
+  {
+    group: "AI & Data",
+    items: ["LLM agent design", "RAG systems", "LangGraph", "Qdrant"],
   },
   {
     group: "Infra & Tooling",
-    items: ["Turborepo", "pnpm workspaces", "Docker", "CI/CD", "Vercel"],
+    items: ["Docker", "Jenkins", "Git", "Linux", "CI/CD", "Vercel", "Turborepo"],
   },
 ];
