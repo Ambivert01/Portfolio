@@ -5,13 +5,13 @@ export const siteConfig = {
   description:
     "Parth designs and ships production-grade AI systems for infrastructure-critical domains — currently building RailMind, an AI-powered railway infrastructure management platform.",
   url: "https://example.com",
-  email: "hello@example.com",
+  email: "prajapatiparth01.ab@gmail.com",
   phone: "[+91 XXXXX XXXXX]",
   location: "India",
-  bookingUrl: "https://cal.com/yourhandle",
+  bookingUrl: "https://cal.com/parth-prajapati-lgfu8j",
   social: {
-    github: "https://github.com/yourhandle",
-    linkedin: "https://linkedin.com/in/yourhandle",
+    github: "https://github.com/Ambivert01",
+    linkedin: "https://www.linkedin.com/in/parthprajapati01",
     twitter: "https://twitter.com/yourhandle",
     medium: "https://medium.com/@yourhandle",
     devto: "https://dev.to/yourhandle",

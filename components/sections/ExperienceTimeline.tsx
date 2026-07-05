@@ -8,7 +8,7 @@ export function ExperienceTimeline() {
       <h2 className="mb-8 font-display text-2xl font-medium md:text-3xl">Experience</h2>
       <div className="flex flex-col">
         {experience.map((e, i) => (
-          <RevealOnScroll key={e.org} delay={i * 0.08}>
+          <RevealOnScroll key={i} delay={i * 0.08}>
             <div className="flex gap-6 border-t border-border py-6 first:border-t-0">
               <div className="w-28 shrink-0 pt-1 font-mono text-xs text-fg-subtle">{e.period}</div>
               <div className="flex-1">

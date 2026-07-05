@@ -8,7 +8,7 @@ export function TestimonialsSection() {
       <h2 className="mb-8 font-display text-2xl font-medium md:text-3xl">What people say</h2>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
         {testimonials.map((t, i) => (
-          <RevealOnScroll key={t.name} delay={i * 0.1}>
+          <RevealOnScroll key={i} delay={i * 0.1}>
             <Card glass className="flex h-full flex-col gap-4">
               <p className="text-sm leading-relaxed text-fg-muted">&ldquo;{t.quote}&rdquo;</p>
               <div className="flex items-center gap-3">
