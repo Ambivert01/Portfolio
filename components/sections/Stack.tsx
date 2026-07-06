@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { skillGroups } from "@/content/skills";
+import { getSyncedSkillGroups } from "@/lib/syncSkills";
 import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
 import { Badge } from "@/components/ui/Badge";
 import { useMotionValue, useSpring, useTransform } from "framer-motion";
@@ -111,7 +111,7 @@ export function Stack() {
   return (
     <section className="mx-auto max-w-content px-6 py-16">
       <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-        {skillGroups.map((g, i) => (
+        {getSyncedSkillGroups().map((g, i) => (
           <SkillCard key={g.group} g={g} i={i} />
         ))}
       </div>

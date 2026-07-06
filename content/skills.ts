@@ -5,11 +5,11 @@ export const skillGroups: { group: string; items: string[] }[] = [
   },
   {
     group: "Frontend",
-    items: ["React", "Next.js", "Tailwind CSS"],
+    items: ["React", "Next.js", "Tailwind CSS", "Vite", "Framer Motion", "Mapbox GL"],
   },
   {
     group: "Backend",
-    items: ["Node.js", "Express", "REST APIs", "NestJS"],
+    items: ["Node.js", "Express", "NestJS", "REST APIs", "WebSockets", "WebRTC", "Socket.IO", "Prisma", "JWT", "Multer", "Cloudinary"],
   },
   {
     group: "Databases",
@@ -17,10 +17,26 @@ export const skillGroups: { group: string; items: string[] }[] = [
   },
   {
     group: "AI & Data",
-    items: ["LLM agent design", "RAG systems", "LangGraph", "Qdrant"],
+    items: ["LLM agent design", "RAG systems", "LangGraph", "Qdrant", "GPT-4o-mini"],
   },
   {
-    group: "Infra & Tooling",
-    items: ["Docker", "Jenkins", "Git", "Linux", "CI/CD", "Vercel", "Turborepo"],
+    group: "DevOps",
+    items: ["Docker", "Git", "Linux", "CI/CD", "GitHub Actions", "Turborepo"],
+  },
+  {
+    group: "Cloud",
+    items: ["Vercel", "Render", "AWS", "GCP", "Azure"],
+  },
+  {
+    group: "Mobile",
+    items: ["React Native", "Expo", "Flutter"],
+  },
+  {
+    group: "Testing",
+    items: ["Jest", "Vitest", "Playwright", "Cypress"],
+  },
+  {
+    group: "Third-Party & Services",
+    items: ["Stripe", "Cloudinary", "Resend", "Sentry"],
   },
 ];
