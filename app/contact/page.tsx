@@ -17,14 +17,15 @@ export default function ContactPage() {
         <RevealOnScroll>
           <SignalIndicator tone="green" label={siteConfig.availability} />
           <h1 className="mt-6 font-display text-4xl font-medium">Get in touch</h1>
-          <p className="mt-3 max-w-lg text-fg-muted">
+          {/* <p className="mt-3 max-w-lg text-fg-muted">
             Fastest way to reach me is email. Based in {siteConfig.location}. {siteConfig.phone}
-          </p>
+          </p> */}
           <div className="mt-8 flex flex-wrap gap-3">
             <Magnetic><Button href={`mailto:${siteConfig.email}`}>{siteConfig.email}</Button></Magnetic>
             <Magnetic strength={0.2}><Button href={siteConfig.bookingUrl} variant="secondary">Book a call</Button></Magnetic>
             <Magnetic strength={0.2}><Button href={siteConfig.social.github} variant="secondary">GitHub</Button></Magnetic>
             <Magnetic strength={0.2}><Button href={siteConfig.social.linkedin} variant="secondary">LinkedIn</Button></Magnetic>
+            <Magnetic strength={0.2}><Button href={siteConfig.social.instagram} variant="secondary">Instagram</Button></Magnetic>
           </div>
         </RevealOnScroll>
       </section>
