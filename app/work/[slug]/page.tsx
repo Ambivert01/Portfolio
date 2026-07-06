@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return { title: project ? `${project.name} — Project` : "Project" };
 }
 
-const statusTone = { active: "active", shipped: "amber", archived: "neutral" } as const;
+const statusTone = { active: "active", shipped: "amber", beta: "neutral", archived: "neutral" } as const;
 
 export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
