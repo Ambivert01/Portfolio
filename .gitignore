@@ -6,4 +6,3 @@ out
 *.log
 .open-next/
 package-lock.json
-public

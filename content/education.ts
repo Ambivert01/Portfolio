@@ -8,20 +8,26 @@ export type EducationItem = {
 
 export const education: EducationItem[] = [
   {
-    institution: "[University Name]",
-    degree: "[Degree, Major]",
-    period: "[Year — Year]",
-    score: "[CGPA / GPA]",
-    notes: "[Relevant coursework, thesis, honors.]",
+    institution: "Parul University",
+    degree: "Bachelor of Technology in Computer Science Engineering",
+    period: "2023 - Current",
+    score: "8.23 CGPA",
+    notes: "Currently Focusing on software development, artificial intelligence, and system design.Engaged in various projects that enhance practical skills and contribute to innovative solutions.",
   },
   {
-    institution: "[School Name]",
-    degree: "[Grade / Board]",
-    period: "[Year — Year]",
-    score: "[Score %]",
+    institution: "Sanskruti Higher Secondary School",
+    degree: "12th / GSEB",
+    period: "2022 - 2023",
+    score: "58 %",
+  },
+  {
+    institution: "Gokuldham International School",
+    degree: "10th / GSEB",
+    period: "2020 - 2021",
+    score: " 86 %",
   },
 ];
 
 export const testScores = [
-  { test: "[GRE / IELTS / TOEFL / SAT]", score: "[Score]", year: "[Year]" },
+  // { test: "[GRE / IELTS / TOEFL / SAT]", score: "[Score]", year: "[Year]" },
 ];

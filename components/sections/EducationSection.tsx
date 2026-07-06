@@ -10,16 +10,18 @@ export function EducationSection() {
       <div className="flex flex-col gap-4">
         {education.map((e, i) => (
           <RevealOnScroll key={e.institution} delay={i * 0.08}>
-            <Card className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
-              <div>
-                <h3 className="font-medium">{e.institution}</h3>
-                <p className="text-sm text-fg-muted">{e.degree}</p>
-                {e.notes && <p className="mt-1 text-xs text-fg-subtle">{e.notes}</p>}
+            <Card className="flex flex-col gap-3">
+              <div className="flex flex-col gap-1 md:flex-row md:items-start md:justify-between">
+                <div>
+                  <h3 className="font-medium">{e.institution}</h3>
+                  <p className="text-sm text-fg-muted">{e.degree}</p>
+                </div>
+                <div className="flex shrink-0 items-center gap-3 font-mono text-xs text-fg-subtle">
+                  <span>{e.period}</span>
+                  {e.score && <Badge tone="neutral">{e.score}</Badge>}
+                </div>
               </div>
-              <div className="flex items-center gap-3 font-mono text-xs text-fg-subtle">
-                <span>{e.period}</span>
-                {e.score && <Badge tone="neutral">{e.score}</Badge>}
-              </div>
+              {e.notes && <p className="text-xs leading-relaxed text-fg-subtle">{e.notes}</p>}
             </Card>
           </RevealOnScroll>
         ))}

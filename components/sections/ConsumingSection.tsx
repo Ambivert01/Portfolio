@@ -19,8 +19,8 @@ export function ConsumingSection() {
           <div>
             <h3 className="font-mono text-xs uppercase tracking-wider text-fg-subtle">Books</h3>
             <ul className="mt-3 flex flex-col gap-1 text-sm text-fg-muted">
-              {consuming.books.map((b) => (
-                <li key={b.title} className="flex justify-between">
+              {consuming.books.map((b, i) => (
+                <li key={i} className="flex justify-between">
                   <span>{b.title}</span>
                   <Badge tone={b.status === "read" ? "active" : "amber"}>{b.status}</Badge>
                 </li>
