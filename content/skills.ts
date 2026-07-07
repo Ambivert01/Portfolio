@@ -9,7 +9,7 @@ export const skillGroups: { group: string; items: string[] }[] = [
   },
   {
     group: "Backend",
-    items: ["Node.js", "Express", "NestJS", "REST APIs", "WebSockets", "WebRTC", "Socket.IO", "Prisma", "JWT", "Multer", "Cloudinary"],
+    items: ["Node.js", "Express", "NestJS", "FastAPI", "REST APIs", "WebSockets", "WebRTC", "Socket.IO", "Prisma", "JWT", "Multer", "Cloudinary", "BullMQ", "Zod"],
   },
   {
     group: "Databases",
@@ -17,7 +17,11 @@ export const skillGroups: { group: string; items: string[] }[] = [
   },
   {
     group: "AI & Data",
-    items: ["LLM agent design", "RAG systems", "LangGraph", "Qdrant", "GPT-4o-mini"],
+    items: ["LLM agent design", "RAG systems", "LangGraph", "Qdrant", "GPT-4o-mini", "scikit-learn", "Pandas", "NumPy"],
+  },
+  {
+    group: "Blockchain",
+    items: ["Ethereum", "Solidity", "Hardhat", "Web3.js", "ethers.js", "Smart Contracts", "Merkle Trees"],
   },
   {
     group: "DevOps",

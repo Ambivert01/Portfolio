@@ -120,6 +120,10 @@ export const skillCategoryMap: Record<string, string> = {
   SSE: "Backend",
   Zod: "Backend",
 
+  FastAPI: "Backend",
+  BullMQ: "Backend",
+  Zod: "Backend",
+
   // ─── Databases ───────────────────────────────────────────────────────────────
   MongoDB: "Databases",
   Mongoose: "Databases",
@@ -190,6 +194,24 @@ export const skillCategoryMap: Record<string, string> = {
   "Vector Search": "AI & Data",
   Embeddings: "AI & Data",
 
+  "scikit-learn": "AI & Data",
+  Pandas: "AI & Data",
+  NumPy: "AI & Data",
+
+  // ─── Blockchain
+  Ethereum: "Blockchain",
+  Solidity: "Blockchain",
+  Hardhat: "Blockchain",
+  "Web3.js": "Blockchain",
+  "ethers.js": "Blockchain",
+  "Smart Contracts": "Blockchain",
+  "Merkle Trees": "Blockchain",
+  "Foundry": "Blockchain",
+  "OpenZeppelin": "Blockchain",
+  "IPFS": "Blockchain",
+  "Polygon": "Blockchain",
+  "Chainlink": "Blockchain",
+
   // ─── DevOps ──────────────────────────────────────────────────────────────────
   Docker: "DevOps",
   Git: "DevOps",
@@ -253,6 +275,12 @@ export const skillCategoryMap: Record<string, string> = {
   Mocha: "Testing",
   Chai: "Testing",
   k6: "Testing",
+
+  Ethereum: "Infra & Tooling",
+  Solidity: "Infra & Tooling",
+  "Web3.js": "Infra & Tooling",
+  Hardhat: "Infra & Tooling",
+  "ethers.js": "Infra & Tooling",
 
   // ─── Third-Party & Services ──────────────────────────────────────────────────
   Stripe: "Third-Party & Services",
