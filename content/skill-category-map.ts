@@ -120,10 +120,6 @@ export const skillCategoryMap: Record<string, string> = {
   SSE: "Backend",
   Zod: "Backend",
 
-  FastAPI: "Backend",
-  BullMQ: "Backend",
-  Zod: "Backend",
-
   // ─── Databases ───────────────────────────────────────────────────────────────
   MongoDB: "Databases",
   Mongoose: "Databases",
@@ -182,6 +178,9 @@ export const skillCategoryMap: Record<string, string> = {
   "scikit-learn": "AI & Data",
   Pandas: "AI & Data",
   NumPy: "AI & Data",
+  XGBoost: "AI & Data",
+  LightGBM: "AI & Data",
+  MLflow: "AI & Data",
   Jupyter: "AI & Data",
   "Vercel AI SDK": "AI & Data",
   "AI SDK": "AI & Data",
@@ -194,9 +193,7 @@ export const skillCategoryMap: Record<string, string> = {
   "Vector Search": "AI & Data",
   Embeddings: "AI & Data",
 
-  "scikit-learn": "AI & Data",
-  Pandas: "AI & Data",
-  NumPy: "AI & Data",
+  // (removed duplicate entries: scikit-learn, Pandas, NumPy)
 
   // ─── Blockchain
   Ethereum: "Blockchain",
@@ -211,9 +208,6 @@ export const skillCategoryMap: Record<string, string> = {
   "IPFS": "Blockchain",
   "Polygon": "Blockchain",
   "Chainlink": "Blockchain",
-
-  // ─── DevOps ──────────────────────────────────────────────────────────────────
-  Docker: "DevOps",
   Git: "DevOps",
   Linux: "DevOps",
   "CI/CD": "DevOps",
@@ -275,12 +269,6 @@ export const skillCategoryMap: Record<string, string> = {
   Mocha: "Testing",
   Chai: "Testing",
   k6: "Testing",
-
-  Ethereum: "Infra & Tooling",
-  Solidity: "Infra & Tooling",
-  "Web3.js": "Infra & Tooling",
-  Hardhat: "Infra & Tooling",
-  "ethers.js": "Infra & Tooling",
 
   // ─── Third-Party & Services ──────────────────────────────────────────────────
   Stripe: "Third-Party & Services",

@@ -7,7 +7,10 @@ import type { Project } from "@/content/projects";
 import Link from "next/link";
 import { Github, ExternalLink, ArrowRight } from "lucide-react";
 
-const statusTone = { active: "active", shipped: "amber", archived: "neutral" } as const;
+const statusTone = { active: "active", shipped: "amber", beta: "neutral", archived: "neutral" } as const;
+
+// Ensure statusTone indexing is always safe.
+const getStatusTone = (status: Project["status"]) => statusTone[status];
 
 export function ProjectCard({ project }: { project: Project }) {
   return (
@@ -23,7 +26,7 @@ export function ProjectCard({ project }: { project: Project }) {
                     {project.name}
                   </h3>
                 </Link>
-                <Badge tone={statusTone[project.status]}>{project.status}</Badge>
+                <Badge tone={getStatusTone(project.status)}>{project.status}</Badge>
               </div>
               <p className="mt-2 max-w-lg text-sm leading-relaxed text-fg-muted">{project.oneLiner}</p>
             </div>
@@ -34,10 +37,11 @@ export function ProjectCard({ project }: { project: Project }) {
                   href={project.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="focus-ring rounded-sm p-1.5 text-fg-subtle transition-colors hover:text-fg"
+                  className="focus-ring inline-flex items-center gap-1.5 rounded-full border border-border bg-bg-elevated px-3 py-1.5 text-xs font-medium text-fg-muted transition-colors hover:border-accent/50 hover:text-fg"
                   aria-label="GitHub"
                 >
-                  <Github size={16} />
+                  <Github size={13} />
+                  GitHub
                 </a>
               )}
               {project.liveUrl && project.liveUrl !== "#" && (
@@ -45,10 +49,11 @@ export function ProjectCard({ project }: { project: Project }) {
                   href={project.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="focus-ring rounded-sm p-1.5 text-fg-subtle transition-colors hover:text-fg"
+                  className="focus-ring inline-flex items-center gap-1.5 rounded-full border border-border bg-bg-elevated px-3 py-1.5 text-xs font-medium text-fg-muted transition-colors hover:border-accent/50 hover:text-fg"
                   aria-label="Live preview"
                 >
-                  <ExternalLink size={16} />
+                  <ExternalLink size={13} />
+                  Live
                 </a>
               )}
             </div>

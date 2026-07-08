@@ -39,6 +39,16 @@ export type ProjectDoc = {
   limitations?: string[];
   // 15. Conclusion
   conclusion?: string;
+  // 16. Architecture Diagrams (Mermaid syntax)
+  // Multiple diagrams per project (e.g., architecture overview, data flow, workflow, sequence).
+  // Each diagram can include an optional title.
+  architectures?: {
+    title?: string;
+    mermaid: string;
+  }[];
+
+  // Back-compat for existing single-diagram content (if any).
+  architecture?: string;
 };
 
 export type Project = {
@@ -308,6 +318,27 @@ export const projects: Project[] = [
         "No native SCADA connectors — legacy hardware integration requires external teams to configure REST/WebSocket ingestion endpoints.",
         "English-only semantic search — regional railway terminology is mapped, but native Hindi querying is on the roadmap.",
         "Single-region deployment — pilot is not multi-zone HA; national scale requires Kubernetes cluster upgrade.",
+      ],
+      architectures: [
+        {
+          title: "System Architecture (Overview)",
+          mermaid: `flowchart LR\n  subgraph UI[Web UI / Client]
+    A[Ask RailMind\nQuery + Context] 
+  end\n\n  subgraph API[Backend API]
+    B[AgentsService\nCache + Orchestration]
+    C[DecisionService\n7-layer synthesis]
+  end\n\n  subgraph Data[Data Layer]
+    P[(PostgreSQL\nIncidents / Assets / SOP links)]
+    G[(Neo4j\nAsset graph\nPART_OF traversal)]
+    V[(Qdrant\nSemantic memory\nSOP + lessons)]
+    R[(Redis\n60s TTL cache)]
+  end\n\n  subgraph Agents[LangGraph Agents]
+    I[Incident Agent]\n  end\n  K[Knowledge Agent]\n  R1[Risk Agent]\n  E[Engineer Agent]\n  PL[Planner Agent]\n  L[Learning Agent]\n\n  A --> B\n  B -->|cache miss| I\n  I --> P\n  I --> V\n  K --> V\n  K --> G\n  R1 --> G\n  R1 --> P\n  E --> P\n  PL --> P\n  L --> V\n  B --> C\n  C --> A\n  B <--> R\n`,
+        },
+        {
+          title: "Data Flow (Incident → Recommendation)",
+          mermaid: `sequenceDiagram\n  participant U as User\n  participant S as AgentsService\n  participant C as DecisionService\n  participant PG as PostgreSQL\n  participant N as Neo4j\n  participant Q as Qdrant\n  U->>S: Ask RailMind (Signal S11)\n  S->>S: Check Redis (60s TTL)\n  alt Cache hit\n    S-->>U: Recommendation + citations\n  else Cache miss\n    S->>PG: load_asset / historical tickets\n    S->>Q: semantic SOP + incidents search\n    S->>N: risk propagation (PART_OF)\n    S->>C: evidence synthesis + explainability\n    C-->>U: 7-layer recommendation\n    S-->>Q: LearningAgent vectorize resolution\n    S-->>S: cache result (Redis)\n  end\n`,
+        },
       ],
       conclusion:
         "RailMind is a unified cognitive intelligence layer that sits on top of existing infrastructure investments, transforming disconnected operational data into clear, actionable insights. Its compounding architecture means the system grows more valuable with every closed ticket: 100 incidents establishes local correlations, 10,000 incidents creates an unmatchable institutional knowledge repository accessible to any engineer on day one. By combining relational precision (PostgreSQL), topological graph modeling (Neo4j), and semantic vector matching (Qdrant) inside a reliable 7-agent LangGraph pipeline, RailMind eliminates fragmented human memory and black-box AI. For Indian Railways, this is a clear, verifiable path toward zero signal failures, optimized maintenance budgets, and permanent institutional knowledge retention across national infrastructure.",
@@ -851,25 +882,221 @@ export const projects: Project[] = [
     },
   },
   {
-    slug: "project-5",
-    name: "[Project Five]",
-    status: "shipped",
-    oneLiner: "[One-line description — what it does, for whom.]",
-    problem: "[Constraint or problem that made this worth building.]",
-    stack: ["[Stack A]"],
-    metrics: [{ label: "[Metric A]", value: "[Value]" }],
-    liveUrl: "#",
-    featured: false,
-  },
-  {
-    slug: "project-6",
-    name: "[Project Six]",
-    status: "archived",
-    oneLiner: "[One-line description — what it does, for whom.]",
-    problem: "[Constraint or problem that made this worth building.]",
-    stack: ["[Stack A]", "[Stack B]"],
-    metrics: [{ label: "[Metric A]", value: "[Value]" }],
-    github: "#",
-    featured: false,
+    slug: "gigshield",
+    name: "GigShield",
+    status: "active",
+    oneLiner: "AI-powered parametric income protection platform for India's gig workforce — zero-touch claims, automated payouts, blockchain audit trails, and multi-layer fraud intelligence.",
+    problem: "India's 12 million delivery workers lose income every day due to rain, floods, extreme heat, AQI emergencies, curfews, and platform outages — yet no insurance product compensates for lost earnings. Existing products protect vehicles and health, not income.",
+    stack: ["React", "TypeScript", "Vite", "Tailwind CSS", "Framer Motion", "TanStack Query", "Chart.js", "Node.js", "Express", "MongoDB", "Redis", "BullMQ", "Socket.IO", "JWT", "FastAPI", "Python", "TensorFlow", "PyTorch", "scikit-learn", "XGBoost", "LightGBM", "Pandas", "NumPy", "Solidity", "Hardhat", "Polygon", "Ethereum", "OpenZeppelin", "ethers.js", "Docker", "Kubernetes", "GitHub Actions", "Prometheus", "Grafana", "Razorpay"],
+    metrics: [
+      { label: "AI models", value: "8" },
+      { label: "Trigger categories", value: "6" },
+      { label: "Fraud detection layers", value: "7" },
+      { label: "Insurance tiers", value: "4" },
+    ],
+    pdfUrl: "/GigShield/gig.pdf",
+    featured: true,
+    docs: {
+      problemStatement:
+        "India currently has approximately 12 million platform-based gig workers operating across food delivery, e-commerce logistics, quick commerce, hyperlocal delivery, and courier services. These workers earn per order, per delivery — missing even one working day can reduce weekly earnings by 30%. A single day of heavy rainfall, severe air pollution, platform outages, curfews, road blockages, or natural disasters can instantly eliminate an entire day's earnings. Existing insurance products protect physical assets, medical expenses, or life coverage — none compensate for temporary income loss due to uncontrollable external disruptions. No scalable solution currently exists that protects workers against temporary income loss resulting from measurable external events. GigShield addresses this missing financial layer through automated parametric insurance specifically designed for gig workers.",
+      existingProblems: [
+        "No Income Protection: If a delivery partner cannot work due to heavy rainfall, flooding, extreme heat, air pollution, curfews, or platform downtime — they earn ₹0. No insurance product compensates for these lost working hours.",
+        "Traditional Insurance Doesn't Cover This: Existing products cover medical expenses, hospitalization, accidents, vehicle damage, and life insurance — none compensate for lost earnings. A rider may remain healthy, his vehicle undamaged, yet heavy rain stops deliveries for six hours with zero compensation.",
+        "Manual Claims Process: Traditional claims require form submission, document upload, proof collection, verification, approval, and settlement — a process taking days or weeks. Gig workers depending on daily income cannot afford such delays.",
+        "One-Size-Fits-All Pricing: Workers in safe cities and flood-prone cities often receive similar premiums, ignoring actual risk exposure and creating unfair underwriting.",
+        "No Real-Time Risk Monitoring: Traditional insurance remains passive — nothing happens until the worker manually files a claim. No continuous monitoring of weather, floods, pollution, or government alerts.",
+        "No Predictive Intelligence: Current systems cannot predict tomorrow's weather risk, identify which delivery zones are becoming dangerous, or forecast expected claim volume next week.",
+        "Increasing Fraud: GPS spoofing, multiple accounts, duplicate claims, synthetic identities, and coordinated fraud rings are becoming more sophisticated. Traditional rule-based detection struggles to catch these attacks.",
+        "Platform Dependency Ignored: If a platform experiences server downtime, order assignment failure, or GPS issues — workers lose income despite being available. Current insurance completely ignores this dependency.",
+        "Climate Change Increasing Risk: Extreme weather events are becoming more frequent — longer heatwaves, urban flooding, heavy rainfall, AQI spikes. Traditional insurance models are not adapting fast enough.",
+      ],
+      whyThisProject:
+        "GigShield exists because the current insurance ecosystem leaves one of the fastest-growing workforces financially unprotected. Instead of asking 'Can the worker prove their loss?' — GigShield asks 'Did the disruption actually happen?' If yes, the platform automatically performs the remaining work. This fundamental shift transforms insurance from paperwork into automation. Built for Guidewire DEVTrails 2026, GigShield introduces a completely new insurance category: AI-powered real-time income protection for gig workers — combining Generation 4 (Parametric) and Generation 5 (Autonomous) insurance into one production-ready ecosystem.",
+      objectives: [
+        "Develop an AI-powered parametric insurance platform that automatically protects gig workers from temporary income loss caused by measurable external disruptions.",
+        "Reduce financial vulnerability and improve worker trust through affordable weekly subscriptions (₹30–₹165/week).",
+        "Build automated trigger detection across 6 categories: Weather, Heat, Pollution, Government, Infrastructure, and Platform.",
+        "Implement multi-layer AI fraud intelligence combining GPS validation, device fingerprinting, behavioral biometrics, network graph analysis, and temporal burst detection.",
+        "Provide blockchain transparency through immutable on-chain audit records for every policy, claim, and payment.",
+        "Enable instant payout processing — workers receive compensation within minutes of trigger verification, no claim submission required.",
+        "Design for enterprise scalability: modular microservices, event-driven architecture, cloud-native deployment supporting millions of workers.",
+      ],
+      solution:
+        "GigShield combines AI, parametric insurance, real-time environmental monitoring, automated claims, fraud intelligence, blockchain transparency, and instant digital payments into one autonomous income protection ecosystem. The platform continuously monitors trusted external data sources (weather APIs, AQI APIs, traffic APIs, government alerts, platform availability). When predefined conditions are satisfied, the system automatically verifies eligibility, calculates compensation, performs multi-layer fraud analysis, and transfers payouts within minutes — without requiring any manual claim submission. Four insurance tiers (Basic Shield ₹30–55/week, Standard Shield ₹55–90/week, Pro Shield ₹90–130/week, Elite Shield ₹130–165/week) with AI-driven dynamic weekly pricing that adjusts for seasonal risk multipliers (monsoon 1.3x, AQI season 1.2x, cyclone season 1.15x, heatwave season 1.1x).",
+      features: [
+        "AI Risk Assessment Engine — Multi-factor worker risk profiling using operating city, delivery zone, platform, vehicle type, working hours, historical rainfall, flood frequency, heatwave history, AQI exposure, and claim history. Outputs Risk Score (0–100), Risk Category, Confidence Score, and Weekly Premium Recommendation.",
+        "Dynamic Weekly Premium Engine — Personalized pricing recalculated every week based on worker risk score, weather forecast, seasonal risk, AQI prediction, historical claims, trust score, and loyalty benefits. Range: ₹35–₹165/week. Workers always receive an explanation for premium changes.",
+        "Parametric Trigger Detection Engine — Continuous 24×7 monitoring of 6 trigger categories: Weather (rain >50mm, floods, cyclones), Heat (temperature >45°C, heatwave warnings), Pollution (AQI >300, PM2.5/PM10), Government (curfews, emergency lockdowns, disaster alerts), Infrastructure (road closures, extreme traffic), Platform (API downtime, order assignment failure). Multi-source verification: OpenWeatherMap + IMD + backup provider consensus required before trigger activation.",
+        "Zero-Touch Claims Engine — Claims generated entirely by the platform. Workers never fill forms, upload documents, or contact support. Workflow: Verified Trigger → Policy Match → Eligibility Check → Fraud Analysis → Claim Generated → Payment Processing. Compensation tiers: Basic ₹200/day (max ₹800/week), Standard ₹350/day (max ₹1,400/week), Pro ₹500/day (max ₹2,000/week), Elite ₹700/day (max ₹2,800/week).",
+        "7-Layer AI Fraud Intelligence System — Layer 1: Identity Verification (OTP, KYC, mobile, bank). Layer 2: Device Intelligence (emulator detection, rooted device, jailbreak, virtual device). Layer 3: GPS Validation (accuracy, impossible travel speed, zone matching, historical movement). Layer 4: Behavioral Biometrics (typing speed, touch patterns, navigation behavior, session timing). Layer 5: Historical Analysis (claim frequency, premium history, worker reputation). Layer 6: Network Analysis (shared devices, shared bank accounts, fraud rings, Louvain graph clustering). Layer 7: AI Fraud Score (0–100) → Auto-Approve (0–20), Monitor (21–50), Manual Review (51–75), Reject (76–100).",
+        "Physics-Based Anti-Spoofing — Accelerometer/gyroscope validates real outdoor motion vs stationary phone. Barometer detects indoor vs outdoor pressure. Cell tower geography cross-checked against claimed zone (rain doesn't teleport you). Wi-Fi SSID analysis (home network visible = not in delivery zone). Bluetooth beacon density (urban zones have restaurant/traffic beacons). Rain-adaptive scoring: thresholds automatically loosen 15 points during verified heavy rain events since honest riders look slightly more suspicious on technical metrics.",
+        "Tiered Fraud Response — Tier 1 Green (Trust 70–100): Auto-approve, payout <15 min. Tier 2 Yellow (45–69): Approve + soft in-app confirmation prompt. Tier 3 Orange (20–44): Hold 2 hours + WhatsApp selfie verification + AI rain detection model. Tier 4 Red (0–19): Reject + 72-hour appeal path with human review + ₹50 goodwill credit if wrongly flagged.",
+        "Blockchain Transparency Layer — Hybrid architecture: only cryptographic hashes stored on-chain (Polygon/Ethereum Sepolia testnet). On-chain records: Policy Hash, Claim Hash, Payment Hash, Reward Hash, Audit Event Hash. Oracle service bridges off-chain weather data to smart contracts. Public verification: anyone can verify any donation by ID on Etherscan without platform access.",
+        "Loyalty Reward Pool — Community-driven incentive system rewarding consecutive weekly renewals, low fraud risk, safe working behavior, and referrals. Benefits: premium discounts, additional coverage, emergency bonus protection, cashback, priority claims processing, premium-free weeks.",
+        "AI Advisory System — Proactive worker alerts before disruptions occur. Analyzes weather forecasts, AQI predictions, flood probability, government notifications, and traffic conditions. Example: 'Heavy rainfall expected after 3 PM. Start your shift earlier.' Reduces both worker risk and claim frequency.",
+        "10-Screen Intelligent Onboarding — Language select → Phone + OTP (20s) → Platform selection → GPS city/zone auto-detect → Shift pattern → Earnings estimate → AI risk score calculation → Plan selection → UPI payment → Coverage confirmed. Complete onboarding in under 5 minutes.",
+        "Worker Dashboard — Active policy status, AI risk summary with personalized explanation, active coverages, claim history, earnings protected (total lifetime), AI recommendations, loyalty streak, and real-time weather alerts.",
+        "Admin + Executive Dashboards — Live loss ratio, risk heatmap, predictive claims next week, community pool balance, fraud alerts, AI model accuracy monitoring, payment gateway health, and geographic intelligence maps.",
+        "WhatsApp AI Assistant — Conversational insurance access for workers who prefer messaging over apps. Capabilities: policy info, claim status, premium details, payment tracking, coverage explanation, weather alerts, renewal reminders.",
+        "Income Bridge — When AI predicts claim with ≥98% confidence, workers receive emergency advance before final settlement. Reduces short-term financial stress during verified high-impact events.",
+        "Public Risk Map — Dynamic city-wide risk maps displaying rain zones, flood zones, AQI levels, heat risk, curfew areas, platform outages, and active insurance events. AI predicts future high-risk areas and upcoming disruption probability.",
+      ],
+      userRoles: [
+        { role: "Delivery Worker", description: "Registers via OTP, receives AI risk assessment and personalized weekly plan, purchases coverage, receives automatic payouts when triggers fire. Never submits a claim manually. Accesses dashboard for coverage status, claim history, loyalty rewards, and AI recommendations." },
+        { role: "Insurance Administrator", description: "Manages policy lifecycle, claims oversight, financial monitoring, and business performance. Reviews manual review queue, overrides AI decisions when necessary, monitors fraud dashboard, and manages payment reconciliation." },
+        { role: "Fraud Analyst", description: "Monitors suspicious claims, investigates GPS spoof attempts, reviews device mismatch cases, analyzes fraud ring clusters via network graph, and manages Tier 3/4 appeal reviews." },
+        { role: "Finance Team", description: "Approves payment batches, monitors settlement reports, manages reconciliation, tracks gateway health, and reviews revenue analytics." },
+        { role: "AI Operations Team", description: "Monitors model accuracy, detects prediction drift, manages retraining schedules, reviews feature importance, and maintains confidence threshold configurations." },
+        { role: "Executive", description: "Accesses KPI dashboard: active workers, weekly revenue, total payouts, loss ratio, claim frequency, worker growth, regional risk distribution, forecasted claims, fraud rate, and customer retention." },
+      ],
+      useCases: [
+        {
+          id: "UC-01",
+          title: "Heavy Rainfall Auto-Payout",
+          who: "Delivery Worker (Blinkit, Mumbai)",
+          trigger: "City receives 112mm rainfall — exceeds 50mm policy threshold.",
+          steps: [
+            "Trigger Engine detects rainfall from OpenWeatherMap + IMD + backup provider consensus.",
+            "Policy Engine finds all active Standard Shield policies in Andheri zone.",
+            "Eligibility check: active policy, covered location, covered time window, claim limit not exceeded.",
+            "Fraud Engine runs 7-layer analysis — Trust Score 91/100 (cell tower matches zone, accelerometer shows outdoor motion, no home Wi-Fi SSID visible).",
+            "Claim auto-generated: ₹350 compensation.",
+            "Payment Engine processes via UPI — settlement in <15 minutes.",
+            "Blockchain Worker anchors claim hash to Polygon.",
+            "Worker receives push notification: 'Heavy rain detected in your zone! ₹350 is being credited now.'",
+          ],
+          before: "Worker earns ₹0, has no recourse, must wait days to file a manual claim that may be rejected.",
+          after: "₹350 credited automatically within 15 minutes. Worker never submitted anything.",
+        },
+        {
+          id: "UC-02",
+          title: "GPS Spoofing Fraud Attempt",
+          who: "Fraud Syndicate (500 riders, Telegram-coordinated)",
+          trigger: "AQI crosses 400 in Dharavi Zone-B. Syndicate activates GPS spoofing apps to fake location from Navi Mumbai.",
+          steps: [
+            "500 claims arrive within a 4-minute window — temporal burst detection flags instant vertical spike (normal pattern is Gaussian over 20–40 minutes).",
+            "Device Intelligence: mock location permission detected via Android SDK check.",
+            "Cell tower geography: connected to BSNL-NaviMumbai-Vashi-3 tower, 14km from claimed Dharavi zone.",
+            "Accelerometer: flat line for 90 minutes — person is stationary, not outdoors.",
+            "Wi-Fi: home SSID 'JioFiber_Ravi_Home' visible — not in commercial delivery zone.",
+            "Network graph: Louvain clustering detects 500 accounts linked through overlapping phone contact metadata.",
+            "Fraud Score: 94/100 — AUTO-REJECT. Zero rupees sent.",
+            "Cluster tagged HIGH RISK GROUP. All accounts flagged for manual review.",
+          ],
+          before: "₹1.5 lakh drained per event. Repeat 3x/week = ₹18 lakh/month liquidity drain.",
+          after: "Attack caught before a single rupee was sent. Syndicate permanently flagged.",
+        },
+        {
+          id: "UC-03",
+          title: "Platform Outage Coverage",
+          who: "Swiggy delivery partner",
+          trigger: "Swiggy experiences nationwide outage — order assignments stop for 3 hours.",
+          steps: [
+            "Platform monitoring detects API downtime and order assignment failure.",
+            "Trigger Engine verifies platform outage against secondary monitoring source.",
+            "Pro Shield and Elite Shield policyholders in affected zones identified.",
+            "Eligibility verified — platform app was open, zero order pings received (cross-checked against platform session logs).",
+            "Fraud Engine validates: genuine active session, no GPS spoofing, consistent device.",
+            "Compensation processed automatically for covered duration.",
+          ],
+          before: "Worker loses 3 hours of income with no recourse — platform outage is not their fault.",
+          after: "Automatic income protection for platform-caused disruptions.",
+        },
+        {
+          id: "UC-04",
+          title: "Extreme Heat Protection",
+          who: "Delivery worker in Jaipur",
+          trigger: "Temperature reaches 48°C — exceeds heat threshold in worker's policy.",
+          steps: [
+            "Heat trigger detected from weather APIs — temperature + heat index both exceed thresholds.",
+            "AI Advisory Engine simultaneously sends proactive alert: 'Extreme heat warning. Avoid outdoor work 12PM–5PM.'",
+            "Worker's Standard Shield policy matched — heat protection coverage active.",
+            "Fraud Engine validates location and device consistency.",
+            "Payout initiated automatically.",
+          ],
+          before: "Worker risks health working in 48°C heat with no financial safety net.",
+          after: "Automatic compensation + proactive safety advisory before the worker even realizes they've lost income.",
+        },
+        {
+          id: "UC-05",
+          title: "Weekly Policy Renewal Lifecycle",
+          who: "Regular subscriber (6-week loyalty streak)",
+          trigger: "Monday 6 AM — new policy week begins.",
+          steps: [
+            "GigShield sends push notification: 'Renew your policy for this week.'",
+            "Worker taps Renew — ₹72 deducted from UPI/wallet.",
+            "Policy active: Monday 6 AM – Sunday 11:59 PM.",
+            "AI recalculates risk score using latest weather forecast and seasonal multiplier.",
+            "Loyalty streak: 6 weeks → 10% premium discount applied next week.",
+            "Blockchain records policy renewal hash.",
+          ],
+          before: "Annual insurance with large upfront premium — unaffordable for daily-income workers.",
+          after: "₹72/week aligned with weekly earnings cycle. Loyalty rewards reduce cost over time.",
+        },
+      ],
+      workflow: [
+        "Worker registers via OTP → basic profile → platform selection → GPS zone detection → shift pattern → earnings estimate.",
+        "AI Risk Engine evaluates worker profile + environmental data → Risk Score generated.",
+        "Dynamic Premium Engine calculates personalized weekly price → AI recommends optimal plan.",
+        "Worker purchases policy via UPI/Razorpay → policy activated → blockchain hash recorded.",
+        "Trigger Engine polls weather APIs, AQI APIs, traffic APIs, government alerts, platform status every cycle.",
+        "Event detected → multi-source consensus validation → threshold check → Trigger verified.",
+        "Policy Engine finds all active policies matching trigger zone and coverage type.",
+        "Eligibility Engine validates: active policy, covered location, covered time, claim limit not exceeded.",
+        "Fraud Engine runs 7-layer analysis → Fraud Score computed → Tier assigned.",
+        "Tier 1/2: Claim auto-generated → Payment Engine queues payout → UPI/bank settlement.",
+        "Tier 3: Payout held 2 hours → WhatsApp verification → AI rain detection → approve or manual review.",
+        "Tier 4: Claim rejected → appeal path opened → human review within 24 hours.",
+        "Blockchain Worker batches audit hashes → Merkle Tree → Polygon smart contract anchor.",
+        "Notification Engine delivers push + SMS + WhatsApp alerts to worker.",
+        "Trust Score and Loyalty Score recalculated → dashboards refreshed.",
+      ],
+      businessFlow: [
+        "Worker registers → AI risk profile created → personalized weekly premium generated.",
+        "Policy purchased → coverage activated → continuous environmental monitoring begins.",
+        "Disruption occurs → Trigger Engine detects and verifies via multi-source consensus.",
+        "Eligible workers identified → Fraud Engine validates → claims auto-generated.",
+        "Payments processed instantly → blockchain anchored → worker notified.",
+        "Trust scores evolve: honest behavior rewarded, fraud penalized automatically.",
+        "Loyalty streaks accumulate → premium discounts applied → retention improves.",
+        "Executive dashboard tracks: loss ratio target <65%, combined ratio <85%, net margin ~15%.",
+      ],
+      beforeVsAfter: [
+        { aspect: "Claim submission", before: "Manual forms, document upload, proof collection, days of waiting", after: "Zero-touch — worker never submits anything, claim auto-generated" },
+        { aspect: "Settlement time", before: "Days to weeks for traditional insurance", after: "Under 15 minutes from trigger verification" },
+        { aspect: "Fraud detection", before: "Rule-based checks easily bypassed by GPS spoofing", after: "7-layer physics + behavioral + network analysis catches coordinated syndicates" },
+        { aspect: "Premium pricing", before: "Static annual premium, same for all workers", after: "AI-driven weekly pricing, personalized per worker, adjusts seasonally" },
+        { aspect: "Coverage type", before: "Vehicle, health, life — not income", after: "Income protection specifically for gig work disruptions" },
+        { aspect: "Transparency", before: "No visibility into how claims are processed", after: "Blockchain-anchored audit trail, public Etherscan verification" },
+        { aspect: "Affordability", before: "₹4,000+ annual premium upfront", after: "₹30–₹165/week aligned with weekly earnings cycle" },
+        { aspect: "Platform outages", before: "Not covered by any existing insurance", after: "Pro/Elite Shield covers platform downtime as a trigger category" },
+      ],
+      futureScope: [
+        "Mobile App (React Native) — Offline-first with IndexedDB queue for low-connectivity disaster zones.",
+        "IoT Hyperlocal Sensor Network — Water level sensors, local rain gauges, AQI sensors, road flood sensors for street-level trigger precision beyond city-wide weather APIs.",
+        "Satellite Weather Data — Higher resolution environmental intelligence for hyperlocal trigger accuracy.",
+        "DAO Governance — Multi-stakeholder governance (insurers + worker reps + disaster experts) approving global rules and auditing AI decisions democratically.",
+        "Digital Identity (DID) — Decentralized identity with verifiable credentials for privacy-preserving beneficiary verification.",
+        "Reinsurance Platform — On-chain reinsurance with cross-chain settlement and zero-knowledge proofs.",
+        "Embedded Insurance APIs — Direct integration into Swiggy, Blinkit, Zepto, Amazon Flex, Flipkart partner apps — one-tap coverage from the app workers already use.",
+        "Global Expansion — International weather APIs, local government alert systems, regional payment gateways, country-specific regulations for Southeast Asia, Middle East, Europe.",
+        "AI Copilot — Personal financial planning assistant: shift recommendations, route optimization, earnings forecasting, tax assistance, emergency support.",
+        "Digital Twin of Cities — Simulation environment to run 'what-if' scenarios, test rules before real execution, predict bottlenecks. Example: 'If flood hits 3 zones simultaneously, will funds last?'",
+        "Federated Learning — Train fraud detection models across multiple insurer datasets without centralizing sensitive worker data.",
+        "Micro-Shift Insurance — Insure only the hours actually worked (e.g., Morning 8AM–2PM, Evening 4PM–10PM) — lower premiums, higher adoption.",
+      ],
+      limitations: [
+        "Under active development — built for Guidewire DEVTrails 2026. System design and architecture complete; implementation in progress.",
+        "Dependence on external data quality — incorrect or delayed weather/AQI/government APIs may affect trigger accuracy. Multi-source consensus mitigates but doesn't eliminate this.",
+        "Platform integration availability — delivery companies (Swiggy, Blinkit, Zepto) don't currently expose public APIs for rider activity or earnings. Platform outage detection requires partnerships or simulations.",
+        "AI prediction limitations — models predict probabilities, not certainties. Unexpected environmental events or changing user behavior may temporarily reduce accuracy until retraining.",
+        "Blockchain cost — public network gas fees and congestion. GigShield stores only essential audit hashes on-chain; business operations remain off-chain.",
+        "Regulatory considerations — production deployment requires insurance licensing, IRDAI regulatory approval, and compliance reviews in India.",
+        "Internet connectivity required — real-time wallet validation and trigger monitoring require stable connectivity. Offline fallback planned for mobile app.",
+        "IoT deployment cost — hyperlocal sensor networks require physical deployment and maintenance. Current implementation uses public environmental data sources.",
+      ],
+      conclusion:
+        "GigShield represents a new generation of intelligent insurance systems designed specifically for the realities of the modern gig economy. Traditional insurance protects assets after damage occurs. GigShield protects income before financial hardship becomes permanent. Through AI-powered parametric insurance, multi-layer fraud intelligence, blockchain-backed transparency, and automated payments, GigShield transforms insurance from a slow, reactive process into an autonomous, real-time financial protection ecosystem. Workers no longer spend time filling forms, collecting documents, or waiting for approvals — insurance operates silently in the background, protecting livelihoods whenever uncontrollable events interrupt their ability to work. As climate risks, urban disruptions, and platform-based employment continue to increase worldwide, systems like GigShield will become increasingly important in protecting the financial stability of millions of workers. GigShield is not just insurance — it is an intelligent financial safety net built for the future of work.",
+    },
   },
 ];

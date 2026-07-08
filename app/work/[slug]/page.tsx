@@ -4,9 +4,10 @@ import Link from "next/link";
 import { projects } from "@/content/projects";
 import { Badge } from "@/components/ui/Badge";
 import { StatBlock } from "@/components/ui/StatBlock";
-import { Github, ExternalLink, ArrowLeft, ChevronRight, CheckCircle2, AlertTriangle, Users, TrendingUp, Rocket, Target, Lightbulb, GitCompare, Image, Telescope, Ban, BookOpen, Workflow, Briefcase } from "lucide-react";
+import { Github, ExternalLink, ArrowLeft, ChevronRight, CheckCircle2, AlertTriangle, Users, TrendingUp, Rocket, Target, Lightbulb, GitCompare, Image, Telescope, Ban, BookOpen, Workflow, Briefcase, Grid3X3 } from "lucide-react";
 import { PrintButton } from "@/components/ui/PrintButton";
 import { Lightbox } from "@/components/ui/Lightbox";
+import { MermaidDiagram } from "@/components/ui/MermaidDiagram";
 
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
@@ -82,19 +83,22 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         <div className="mt-14 flex flex-col gap-14">
 
           {/* 1. Problem Statement */}
-          {(docs.problemStatement || docs.overview) && (
+          {docs.problemStatement && (
             <section>
               <SectionLabel icon={<AlertTriangle size={13} />}>Problem Statement</SectionLabel>
-              <p className="mt-5 leading-relaxed text-fg-muted">{docs.problemStatement ?? docs.overview}</p>
+              <p className="mt-5 leading-relaxed text-fg-muted">{docs.problemStatement}</p>
             </section>
           )}
 
+          {/* Backwards compatibility: some older docs payloads may have used `overview`/`coreProblem` */}
+          {((docs as any).overview || (docs as any).coreProblem) && null}
+
           {/* 2. Existing Problems */}
-          {((docs.existingProblems ?? docs.coreProblem) ?? []).length > 0 && (
+          {(docs.existingProblems ?? []).length > 0 && (
             <section>
               <SectionLabel icon={<Ban size={13} />}>Existing Problems</SectionLabel>
               <ul className="mt-5 flex flex-col gap-3">
-                {(docs.existingProblems ?? docs.coreProblem)!.map((p, i) => (
+              {(docs.existingProblems ?? []).map((p: string, i: number) => (
                   <li key={i} className="flex items-start gap-3 text-sm leading-relaxed text-fg-muted">
                     <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-signal-red/70" />
                     {p}
@@ -301,7 +305,22 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             </section>
           )}
 
-          {/* 15. Conclusion */}
+          {/* 15. Architecture Diagrams */}
+          {(docs.architectures && docs.architectures.length > 0) && (
+            <section>
+              <SectionLabel icon={<Grid3X3 size={13} />}>Architecture Diagrams</SectionLabel>
+              <div className="mt-5 flex flex-col gap-8">
+                {docs.architectures.map((d, idx) => (
+                  <div key={idx}>
+                    {d.title && <p className="mb-3 font-mono text-xs uppercase tracking-widest text-fg-subtle">{d.title}</p>}
+                    <MermaidDiagram chart={d.mermaid} />
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {/* 16. Conclusion */}
           {docs.conclusion && (
             <section>
               <SectionLabel icon={<BookOpen size={13} />}>Conclusion</SectionLabel>

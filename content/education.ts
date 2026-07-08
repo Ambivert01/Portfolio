@@ -28,6 +28,12 @@ export const education: EducationItem[] = [
   },
 ];
 
-export const testScores = [
+export type TestScore = {
+  test: string;
+  score: string;
+  year: string;
+};
+
+export const testScores: TestScore[] = [
   // { test: "[GRE / IELTS / TOEFL / SAT]", score: "[Score]", year: "[Year]" },
 ];
