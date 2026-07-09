@@ -894,6 +894,7 @@ export const projects: Project[] = [
       { label: "Fraud detection layers", value: "7" },
       { label: "Insurance tiers", value: "4" },
     ],
+    github: "https://github.com/Ambivert01/AI-Parametric-Insurance-for-India-s-Gig-Workers",
     pdfUrl: "/GigShield/gig.pdf",
     featured: true,
     docs: {

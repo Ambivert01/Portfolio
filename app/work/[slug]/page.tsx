@@ -59,6 +59,12 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                 </a>
               )}
               <PrintButton pdfPath={project.pdfUrl} />
+              <Link
+                href={`/work/${project.slug}/architecture`}
+                className="focus-ring inline-flex items-center gap-1.5 rounded-sm border border-border bg-bg-elevated px-3 py-1.5 text-sm text-fg transition-colors hover:border-accent/40 hover:text-accent"
+              >
+                <Grid3X3 size={14} /> Architecture
+              </Link>
             </div>
           </div>
 
