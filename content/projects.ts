@@ -882,6 +882,105 @@ export const projects: Project[] = [
     },
   },
   {
+    slug: "behaviour-guardian",
+    name: "Behaviour Guardian",
+    status: "shipped",
+    oneLiner:
+      "A behaviour-based scam-warning browser extension that watches how you type & click—never what you type—and warns when you look rushed or coached.",
+    problem:
+      "Most scams don’t happen because the website is fake. They happen on real payment/login apps while a scammer coaches the victim in real time over phone/WhatsApp. The website is genuine—but the person’s behaviour in that moment is the anomaly: panic typing, rapid corrections, repeated pastes into sensitive fields, frantic tab switching, and fast-dwell submission.",
+    stack: ["Manifest V3", "Vanilla JS", "WebExtensions API", "HTML5/CSS3"],
+    metrics: [
+      { label: "Behaviour signals", value: "15" },
+      { label: "Risk engine", value: "On-device" },
+      { label: "Automation detector", value: "Separate score" },
+      { label: "Privacy", value: "Never reads values" },
+    ],
+    github: "https://github.com/Ambivert01/BEHAVIOUR-GUARDIAN",
+    pdfUrl: "/BehaviourGuardian/BehaviourGuardian.pdf",
+    featured: true,
+    docs: {
+      problemStatement:
+        "Most financial fraud doesn’t happen on fake websites. It happens on the real bank login page, the real UPI app, and the real payment gateway—while the victim is on the phone with a scammer, or receiving WhatsApp instructions about exactly what to type and how fast to type it. The website is genuine. The only thing that isn’t normal is the person’s behaviour in that moment. Nothing currently watches for that.",
+      existingProblems: [
+        "URL / domain checks detect unsafe links—nothing detects the scammer’s real-time coaching on a safe site.",
+        "Anti-phishing and antivirus focus on malicious code—OTP/correct-site entry can still be coerced.",
+        "Enterprise behavioural fraud detection is after-the-fact and invisible to the user.",
+        "OTP / form authenticity doesn’t stop the account holder from being rushed into authorizing it.",
+      ],
+      whyThisProject:
+        "Behaviour Guardian fills a specific gap: a free, transparent, client-side tool that warns individuals in real time based on their own on-device interaction behaviour—without reading keystrokes/OTP values or sending data off the device. It is intentionally scoped to the common failure mode of a person being rushed or pressured into an action.",
+      objectives: [
+        "Detect behavioural patterns correlated with being rushed or pressured (panic typing, corrections, repeated pastes into sensitive fields, frantic tab switching, retried actions, etc.).",
+        "Warn in the moment, before the final sensitive submission.",
+        "Do this using event metadata only (never the value typed/pasted).",
+        "Separate panicking humans from scripts/bots using a separate automation heuristic.",
+        "Keep scoring auditable: each warning maps to named signals.",
+        "Fail safe for autonomy: calm, dismissible nudge—not a block.",
+      ],
+      solution:
+        "A Manifest V3 extension + standalone demo that listens to page interaction metadata (typing bursts, paste events, focus churn, clicks, scrolling, tab visibility, and form submissions). It computes a panic score from a rolling sliding window and injects a calm, dismissible warning banner only when risk becomes HIGH. A separate automation detector runs with an intentionally opposite signature. Everything runs on-device—nothing sends keystrokes/values off the browser.",
+      features: [
+        "15 behavioural signals (typing bursts, backspace bursts, repeated pasting into OTP/card fields, focus churn, panic clicking, retry-on-same-control, tab switching, erratic scrolling, idle-then-burst, fast-dwell submission, and more).",
+        "Separate bot/automation detector with its own score (gated to real mouse input).",
+        "Calm dismissible on-page warning when two or more signals fire together.",
+        "Popup dashboard showing live score + plain-language reasons.",
+        "Per-site opt-out persisted locally.",
+        "Optional cross-tab correlation for open messaging apps (off-by-default, explicit permission).",
+        "Standalone no-install demo that runs the same scoring engine.",
+      ],
+      workflow: [
+        "Page activity is observed (keydown, paste, focus, click, scroll, submit, visibility).",
+        "Content script reduces each event to metadata only and streams it into local scoring.",
+        "Risk engine recomputes a rolling panic score (and separate automation score).",
+        "Background worker maintains per-tab state and updates toolbar UI.",
+        "If panic score reaches HIGH, inject a warning banner into the page.",
+        "Popup UI shows current tab’s live score and reasons; per-site opt-out is applied locally.",
+      ],
+      businessFlow: [
+        "User browsing on a genuine payment/login page gets monitored passively.",
+        "If rushed behaviour pattern appears, the banner explains what signals were observed.",
+        "User pauses/dismisses; decision remains with the user.",
+        "Optional messaging-app correlation adds a small bonus but never triggers warning alone.",
+      ],
+      beforeVsAfter: [
+        { aspect: "Who is protected", before: "Only site-level fraud detection, after-the-fact", after: "The individual in the moment via on-page nudge" },
+        { aspect: "Detection basis", before: "Whether the site is safe", after: "Whether the user’s current behaviour looks pressured" },
+        { aspect: "Timing", before: "Usually after money moved", after: "Before final submission" },
+        { aspect: "Privacy", before: "May require value inspection (varies by tool)", after: "Never reads keystrokes/pasted values; only metadata" },
+        { aspect: "User control", before: "No nudge to pause", after: "Calm, dismissible warning" },
+      ],
+      screenshots: [
+        { url: "/BehaviourGuardian/BehaviourGuardian2.png", caption: "Calm state" },
+        { url: "/BehaviourGuardian/BehaviourGuardian3.png", caption: "Scam warning triggered" },
+        { url: "/BehaviourGuardian/BehaviourGuardian4.png", caption: "Bot / automation pattern detected" },
+      ],
+      futureScope: [
+        "Options page for adjustable thresholds.",
+        "Recalibration of weights using consented usage data.",
+        "Localized warning text (Hindi and other languages).",
+        "Browser store publishing with icons + privacy policy.",
+        "Wider allowlist for messaging-app correlation.",
+        "Accessibility audit (screen readers for warning banner).",
+      ],
+      limitations: [
+        "Calm-but-convinced victims may not trigger behavioural signals.",
+        "Hand-tuned thresholds; real-world false positive/negative rates aren’t validated yet.",
+        "Per-tab, per-episode scope by design—no long-term profiling.",
+        "Chromium verified; cross-browser behaviour needs re-test.",
+        "Messaging-app correlation requires explicit permission and only detects specific domains.",
+      ],
+      conclusion:
+        "Behaviour Guardian is a scoped, transparent client-side nudge system for a specific gap: warning when the person’s on-device behaviour on a genuine site looks like they are being rushed or coached through a scam. It deliberately avoids reading values, never transmits sensitive content, and keeps the user in control with a calm, dismissible warning.",
+      architectures: [
+        {
+          title: "System Architecture (Overview)",
+          mermaid: `flowchart LR\n  subgraph Page[Page / User]\n    P1[User activity]\n  end\n\n  subgraph CS[Content Script]\n    CS1[Reads event metadata only]\n  end\n\n  subgraph Risk[Risk Engine]\n    R1[Panic score]\n    A1[Automation score]\n  end\n\n  subgraph BW[Background Worker]\n    BW1[Per-tab state + toolbar badge]\n  end\n\n  subgraph UI[UI]\n    W1[On-page warning banner]\n    POP1[Popup dashboard]\n  end\n\n  P1 --> CS1 --> R1\n  R1 -->|HIGH| W1\n  R1 --> BW1\n  A1 --> BW1\n  BW1 --> POP1\n`,
+        },
+      ],
+    },
+  },
+  {
     slug: "gigshield",
     name: "GigShield",
     status: "active",

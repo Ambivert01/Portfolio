@@ -12,8 +12,10 @@ export const achievements: Achievement[] = [
 ];
 
 export const now = {
-  building: "AidFlow, Disaster Management & Transparency System",
+  building: "Behaviour Guardian",
   learning: "IELTS",
-  reading: "[Currently reading]",
+  location: "Vadodara",
+  position: "4th Year · Parul University Student",
   updatedAt: "2026-07",
 };
+
