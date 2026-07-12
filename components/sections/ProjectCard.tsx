@@ -26,7 +26,10 @@ export function ProjectCard({ project }: { project: Project }) {
                     {project.name}
                   </h3>
                 </Link>
-                <Badge tone={getStatusTone(project.status)}>{project.status}</Badge>
+                <div className="flex flex-col gap-1">
+                  <Badge tone={getStatusTone(project.status)}>{project.status}</Badge>
+                </div>
+
               </div>
               <p className="mt-2 max-w-lg text-sm leading-relaxed text-fg-muted">{project.oneLiner}</p>
             </div>

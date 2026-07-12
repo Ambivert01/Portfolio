@@ -5,6 +5,7 @@ import { projects } from "@/content/projects";
 import { Badge } from "@/components/ui/Badge";
 import { StatBlock } from "@/components/ui/StatBlock";
 import { Github, ExternalLink, ArrowLeft, ChevronRight, CheckCircle2, AlertTriangle, Users, TrendingUp, Rocket, Target, Lightbulb, GitCompare, Image, Telescope, Ban, BookOpen, Workflow, Briefcase, Grid3X3 } from "lucide-react";
+
 import { PrintButton } from "@/components/ui/PrintButton";
 import { Lightbox } from "@/components/ui/Lightbox";
 import { MermaidDiagram } from "@/components/ui/MermaidDiagram";
@@ -45,7 +46,8 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             <p className="mt-3 max-w-2xl text-lg text-fg-muted">{project.oneLiner}</p>
 
             {/* links */}
-            <div className="mt-6 flex flex-wrap items-center gap-3">
+              <div className="mt-6 flex flex-wrap items-center gap-3">
+
               {project.github && (
                 <a href={project.github} target="_blank" rel="noopener noreferrer"
                   className="focus-ring inline-flex items-center gap-1.5 rounded-sm border border-border bg-bg-elevated px-3 py-1.5 text-sm text-fg transition-colors hover:border-accent/40 hover:text-accent">
@@ -59,6 +61,9 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                 </a>
               )}
               <PrintButton pdfPath={project.pdfUrl} />
+
+              
+              {/* architecture link */}
               <Link
                 href={`/work/${project.slug}/architecture`}
                 className="focus-ring inline-flex items-center gap-1.5 rounded-sm border border-border bg-bg-elevated px-3 py-1.5 text-sm text-fg transition-colors hover:border-accent/40 hover:text-accent"
@@ -66,7 +71,8 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                 <Grid3X3 size={14} /> Architecture
               </Link>
             </div>
-          </div>
+            </div>
+
 
           {/* stack */}
           <div className="shrink-0">
@@ -311,22 +317,8 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             </section>
           )}
 
-          {/* 15. Architecture Diagrams */}
-          {(docs.architectures && docs.architectures.length > 0) && (
-            <section>
-              <SectionLabel icon={<Grid3X3 size={13} />}>Architecture Diagrams</SectionLabel>
-              <div className="mt-5 flex flex-col gap-8">
-                {docs.architectures.map((d, idx) => (
-                  <div key={idx}>
-                    {d.title && <p className="mb-3 font-mono text-xs uppercase tracking-widest text-fg-subtle">{d.title}</p>}
-                    <MermaidDiagram chart={d.mermaid} />
-                  </div>
-                ))}
-              </div>
-            </section>
-          )}
+          {/* 15. Conclusion */}
 
-          {/* 16. Conclusion */}
           {docs.conclusion && (
             <section>
               <SectionLabel icon={<BookOpen size={13} />}>Conclusion</SectionLabel>

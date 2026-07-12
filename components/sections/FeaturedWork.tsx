@@ -4,7 +4,10 @@ import { Button } from "@/components/ui/Button";
 import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
 
 export function FeaturedWork() {
-  const featured = projects.filter((p) => p.featured);
+  const featured = projects
+    .filter((p) => p.featured)
+    .slice(0, 3);
+
   return (
     <section className="mx-auto max-w-content px-6 py-16">
       <RevealOnScroll>
@@ -14,8 +17,16 @@ export function FeaturedWork() {
         </div>
       </RevealOnScroll>
       <div className="flex flex-col gap-6">
-        {featured.map((p) => <ProjectCard key={p.slug} project={p} />)}
+        {featured.map((p, idx) => (
+          <div key={p.slug} className="relative">
+            <div className="absolute -left-3 top-1 text-xs font-mono text-fg-subtle">
+              {idx + 1}.
+            </div>
+            <ProjectCard project={p} />
+          </div>
+        ))}
       </div>
+
     </section>
   );
 }

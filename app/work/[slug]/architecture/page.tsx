@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { projects } from "@/content/projects";
-import { MermaidDiagram } from "@/components/ui/MermaidDiagram";
-import { Grid3X3, ArrowLeft } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
+import { Grid3X3, ArrowLeft } from "lucide-react";
+import React from "react";
+import DiagramWithControls from "./DiagramWithControls";
+
 
 export async function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
@@ -18,12 +20,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 const statusTone = { active: "active", shipped: "amber", beta: "neutral", archived: "neutral" } as const;
 
+type ArchitectureDiagram = { title?: string; mermaid: string };
+
 export default async function ProjectArchitecturePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const project = projects.find((p) => p.slug === slug);
   if (!project) return notFound();
 
-  const architectures = project.docs?.architectures ?? [];
+  const architectures = (project.docs?.architectures ?? []) as ArchitectureDiagram[];
 
   return (
     <article className="mx-auto max-w-content px-6 py-20">
@@ -45,21 +49,16 @@ export default async function ProjectArchitecturePage({ params }: { params: Prom
       </div>
 
       {architectures.length > 0 ? (
-        <div className="mt-14 flex flex-col gap-10">
-          <section>
+        <section>
+          <div className="mt-14 flex flex-col gap-10">
             <SectionLabel icon={<Grid3X3 size={13} />}>Architecture Diagrams</SectionLabel>
             <div className="mt-8 flex flex-col gap-8">
               {architectures.map((d, idx) => (
-                <div key={idx}>
-                  {d.title && (
-                    <p className="mb-3 font-mono text-xs uppercase tracking-widest text-fg-subtle">{d.title}</p>
-                  )}
-                  <MermaidDiagram chart={d.mermaid} />
-                </div>
+                <DiagramWithControls key={idx} title={d.title} mermaid={d.mermaid} />
               ))}
             </div>
-          </section>
-        </div>
+          </div>
+        </section>
       ) : (
         <div className="mt-14 rounded-xl border border-border bg-bg-elevated/40 p-6 text-fg-muted">
           No architecture diagrams available for this project.
@@ -74,10 +73,13 @@ function SectionLabel({ children, icon }: { children: React.ReactNode; icon?: Re
     <div className="flex items-center gap-3">
       <span className="h-px flex-1 bg-border" />
       <h2 className="inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-widest text-fg-subtle">
-        {icon}{children}
+        {icon}
+        {children}
       </h2>
       <span className="h-px flex-1 bg-border" />
     </div>
   );
 }
+
+
 
