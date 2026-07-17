@@ -22,7 +22,7 @@ export function ConsumingSection() {
               {consuming.books.map((b, i) => (
                 <li key={i} className="flex justify-between">
                   <span>{b.title}</span>
-                  <Badge tone={b.status === "read" ? "active" : "amber"}>{b.status}</Badge>
+<Badge tone={b.status === "reading" ? "amber" : "active"}>{b.status}</Badge>
                 </li>
               ))}
             </ul>
