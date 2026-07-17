@@ -1,7 +1,7 @@
 export const about = {
-  mission: "Driven by curiosity, I build innovative software and AI solutions that improve lives and shape the future.",
+  mission: "I want to do everything in tech — and I mean that seriously. AI/ML, DevOps, development, DSA, system design. The intersection is where the interesting problems live.",
   philosophy:
-    "I believe great technology is built with purpose, curiosity, and a commitment to continuous learning.",
+    "Depth over surface. I'd rather understand something completely than know a little about a lot. Curiosity drives everything — and I believe the best engineers are the ones who never stop being students.",
   story:
-    "My journey into technology began with a curiosity to understand how software can solve real-world problems. Since then, I've built full-stack web applications, AI-powered systems, and scalable software focused on impact rather than just functionality. Today, I'm continuously expanding my expertise in software engineering, artificial intelligence, and system design while building projects that combine innovation with practical value. My goal is to grow into an engineer who creates technology that makes a meaningful difference.",
+    "My journey into tech started with a simple question: how does software actually work? That curiosity turned into self-study, then projects, then real products. I'm a 4th-year CSE student at Parul University, and I've spent most of that time building — full-stack applications, AI systems, blockchain solutions, and whatever else the problem demands. I've competed at national-level hackathons, worked as a developer at tech companies, and constantly pushed into new territory. Right now I'm building toward becoming a full-spectrum engineer — someone who can go deep on any layer of the stack and bring ideas from zero to production. Long term, I want to build a company that works on problems that actually matter.",
 };

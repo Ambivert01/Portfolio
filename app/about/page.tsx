@@ -17,7 +17,11 @@ export default function AboutPage() {
   return (
     <>
       <div className="mx-auto max-w-content px-6 pt-20">
-        <RevealOnScroll><h1 className="font-display text-4xl font-medium">About</h1></RevealOnScroll>
+        <RevealOnScroll>
+          <p className="font-mono text-xs uppercase tracking-widest text-accent">Who I am</p>
+          <h1 className="mt-2 font-display text-4xl font-medium text-fg">Parth Prajapati</h1>
+          <p className="mt-2 text-lg text-fg-muted">The Ambivert.</p>
+        </RevealOnScroll>
       </div>
       <AboutSection />
       <div className="mx-auto max-w-content px-6"><LanguagesSection /></div>
@@ -28,7 +32,7 @@ export default function AboutPage() {
       <LifeSection />
       <ConsumingSection />
       <FunFactsSection />
-      <PressSection />
+      {/* <PressSection /> */}
     </>
   );
 }

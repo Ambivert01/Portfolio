@@ -1,8 +1,8 @@
 export const consuming = {
-  watching: "[Show/series currently watching]",
-  wishlist: ["[Book/tool/course wishlist item]", "[Item two]"],
+  watching: "India's Got Latent — currently hooked",
+  wishlist: ["IELTS prep", "System Design deep dive", "More Bhagavad Gita commentaries"],
   books: [
-    { title: "[Book Title]", status: "read" as const, year: "[Year]" },
-    { title: "[Book Title]", status: "reading" as const, year: "[Year]" },
+    { title: "Shrimad Bhagavad Gita", status: "reading" as const, year: "2025" },
   ],
+  currentlyWorking: "Introvert → Extrovert arc. In progress.",
 };

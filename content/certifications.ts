@@ -6,6 +6,5 @@ export type Certification = {
 };
 
 export const certifications: Certification[] = [
-  { name: "[Certification Name]", issuer: "[Issuer]", year: "[Year]", credentialUrl: "#" },
-  { name: "[Certification Name]", issuer: "[Issuer]", year: "[Year]", credentialUrl: "#" },
+  // Add certifications here when available
 ];

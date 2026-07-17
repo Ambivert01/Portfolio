@@ -43,4 +43,19 @@ export const skillGroups: { group: string; items: string[] }[] = [
     group: "Third-Party & Services",
     items: ["Stripe", "Razorpay", "Cloudinary", "Resend", "Sentry"],
   },
+  {
+    group: "CS Fundamentals",
+    items: [
+      "Computer Networks",
+      "Operating Systems",
+      "Database Management Systems",
+      "Theory of Computation",
+      "Design & Analysis of Algorithms",
+      "Data Analytics & Visualization",
+      "Open Source Software",
+      "Digital Electronics",
+      "Computer Organization & Microprocessors",
+      "Software Engineering",
+    ],
+  },
 ];

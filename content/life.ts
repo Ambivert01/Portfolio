@@ -1,15 +1,18 @@
 export const life = {
-  values: ["[Value One]", "[Value Two]", "[Value Three]"],
-  quote: { text: "[A quote that guides how you work.]", author: "[Author]" },
-  hobbies: ["[Hobby One]", "[Hobby Two]", "[Hobby Three]"],
+  values: ["Curiosity over comfort", "Depth over surface — learn it properly or not at all", "Build with purpose and innovation"],
+  quote: {
+    text: "Always choose what is right and dharma — even at your worst, even when all are against you. If you are right, just fight. Have faith.",
+    author: "Shrimad Bhagavad Gita",
+  },
+  hobbies: ["Travelling & exploring new places", "Chess", "Capturing memories — always have a camera mindset", "Music while coding"],
   favorites: [
-    { category: "Book", value: "[Title]" },
-    { category: "Tool", value: "[Tool]" },
-    { category: "Podcast", value: "[Show]" },
+    { category: "Book", value: "Shrimad Bhagavad Gita" },
+    { category: "Editor", value: "VS Code / Kiro" },
+    { category: "Mood", value: "Headphones on, deep focus, building something" },
   ],
   setup: [
-    { category: "Machine", value: "[Laptop/Desktop model]" },
-    { category: "Editor", value: "[Editor + theme]" },
-    { category: "Terminal", value: "[Terminal + shell]" },
+    { category: "Machine", value: "Laptop + mechanical keyboard + mouse" },
+    { category: "Editor", value: "VS Code — stack and theme depends on what I'm building" },
+    { category: "Vibe", value: "Songs + code + the right tools for the right problem" },
   ],
 };

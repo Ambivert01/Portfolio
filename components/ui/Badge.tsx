@@ -10,9 +10,9 @@ export function Badge({
   className?: string;
 }) {
   const tones = {
-    neutral: "bg-bg-inset text-fg border border-border hover:border-accent/40 hover:text-accent transition-colors duration-150",
-    active: "bg-signal-green/10 text-signal-green",
-    amber: "bg-accent/10 text-accent",
+    neutral: "bg-bg-inset/80 text-fg-muted border border-border/80 hover:border-accent/50 hover:text-accent transition-colors duration-150",
+    active: "bg-signal-green/15 text-signal-green border border-signal-green/20",
+    amber: "bg-accent/15 text-accent border border-accent/20",
   };
   return (
     <span

@@ -12,7 +12,7 @@ export function Card({
   return (
     <div
       className={cn(
-        "rounded-md border border-border p-6 transition-all duration-300 hover:border-accent/40 hover:-translate-y-1 hover:shadow-lg hover:shadow-accent/10",
+        "rounded-xl border border-border/60 p-5 transition-all duration-300 hover:border-accent/30 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-accent/8",
         glass ? "glass" : "bg-bg-elevated",
         className
       )}

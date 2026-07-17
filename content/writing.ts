@@ -7,6 +7,5 @@ export type Article = {
 };
 
 export const articles: Article[] = [
-  { title: "[Article Title]", platform: "Personal", year: "[Year]", summary: "[One line on the argument or lesson.]", link: "#" },
-  { title: "[Article Title]", platform: "Medium", year: "[Year]", summary: "[One line on the argument or lesson.]", link: "#" },
+  // Add articles here when published
 ];
