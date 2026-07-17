@@ -12,7 +12,8 @@ export const education: EducationItem[] = [
     degree: "Bachelor of Technology in Computer Science Engineering",
     period: "2023 - Current",
     score: "8.23 CGPA",
-    notes: "Currently Focusing on software development, artificial intelligence, and system design.Engaged in various projects that enhance practical skills and contribute to innovative solutions.",
+    notes:
+      "Currently focusing on software development, artificial intelligence, and system design. Engaged in various projects that enhance practical skills and contribute to innovative solutions.",
   },
   {
     institution: "Sanskruti Higher Secondary School",
@@ -24,9 +25,10 @@ export const education: EducationItem[] = [
     institution: "Gokuldham International School",
     degree: "10th / GSEB",
     period: "2020 - 2021",
-    score: " 86 %",
-  },
+    score: "86 %",
+  }
 ];
+
 
 export type TestScore = {
   test: string;

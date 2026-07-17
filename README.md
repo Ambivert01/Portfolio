@@ -1,4 +1,4 @@
-# Portfolio
+# Portfolio - Developing Phase
 
 Personal portfolio — Next.js 15 · TypeScript · Tailwind CSS · Framer Motion.  
 Live: **[PARTH'S PORTFOLIO](https://portfolio-ambivert01.vercel.app)**

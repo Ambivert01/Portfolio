@@ -17,14 +17,12 @@ export function FeaturedWork() {
         </div>
       </RevealOnScroll>
       <div className="flex flex-col gap-6">
-        {featured.map((p, idx) => (
+        {featured.map((p) => (
           <div key={p.slug} className="relative">
-            <div className="absolute -left-3 top-1 text-xs font-mono text-fg-subtle">
-              {idx + 1}.
-            </div>
             <ProjectCard project={p} />
           </div>
         ))}
+
       </div>
 
     </section>
