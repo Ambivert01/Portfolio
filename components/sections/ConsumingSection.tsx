@@ -7,11 +7,7 @@ export function ConsumingSection() {
     <section className="mx-auto max-w-content px-6 py-16">
       <RevealOnScroll>
         <h2 className="mb-8 font-display text-2xl font-medium md:text-3xl">Currently consuming</h2>
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-          <div>
-            <h3 className="font-mono text-xs uppercase tracking-wider text-fg-subtle">Watching</h3>
-            <p className="mt-3 text-sm text-fg-muted">{consuming.watching}</p>
-          </div>
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           <div>
             <h3 className="font-mono text-xs uppercase tracking-wider text-fg-subtle">Wishlist</h3>
             <div className="mt-3 flex flex-wrap gap-2">{consuming.wishlist.map((w) => <Badge key={w} tone="neutral">{w}</Badge>)}</div>
