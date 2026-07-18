@@ -8,6 +8,7 @@ import { KeyboardShortcuts } from "@/components/ui/KeyboardShortcuts";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { CursorSpotlight } from "@/components/ui/CursorSpotlight";
 import { PageTransition } from "@/components/ui/PageTransition";
+import { Analytics } from "@vercel/analytics/next";
 import { siteConfig } from "@/content/site-config";
 
 const display = Space_Grotesk({
@@ -61,6 +62,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Footer />
         <CommandPalette />
         <KeyboardShortcuts />
+        <Analytics />
       </body>
     </html>
   );

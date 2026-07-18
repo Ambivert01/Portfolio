@@ -8,6 +8,8 @@ import { Badge } from "@/components/ui/Badge";
 import { useMotionValue, useSpring, useTransform } from "framer-motion";
 import type { MouseEvent } from "react";
 
+const CS_FUNDAMENTALS_GROUP = "CS Fundamentals";
+
 function SkillCard({ g, i }: { g: { group: string; items: string[] }; i: number }) {
   const [expanded, setExpanded] = useState(false);
   const x = useMotionValue(0.5);
@@ -28,7 +30,7 @@ function SkillCard({ g, i }: { g: { group: string; items: string[] }; i: number 
   }
 
   return (
-    <RevealOnScroll delay={i * 0.1}>
+    <RevealOnScroll delay={i * 0.08}>
       <motion.div
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
@@ -39,22 +41,16 @@ function SkillCard({ g, i }: { g: { group: string; items: string[] }; i: number 
         transition={{ type: "spring", stiffness: 300, damping: 25 }}
         className="relative cursor-pointer overflow-hidden rounded-xl border border-border bg-bg-elevated/60 p-5 backdrop-blur-sm"
       >
-        {/* cursor glow */}
         <motion.div
-          className="pointer-events-none absolute -inset-px rounded-xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+          className="pointer-events-none absolute -inset-px rounded-xl"
           style={{
             background: `radial-gradient(180px circle at ${glowX}% ${glowY}%, hsl(var(--accent)/0.12), transparent 70%)`,
-            opacity: expanded ? 0.8 : undefined,
           }}
         />
-
-        {/* accent border glow on hover */}
         <motion.div
           className="pointer-events-none absolute inset-0 rounded-xl border border-accent/0 transition-all duration-300"
           animate={{ borderColor: expanded ? "hsl(var(--accent)/0.4)" : "hsl(var(--accent)/0)" }}
         />
-
-        {/* header */}
         <div className="relative flex items-center justify-between">
           <div className="flex items-center gap-2">
             <motion.span
@@ -74,12 +70,7 @@ function SkillCard({ g, i }: { g: { group: string; items: string[] }; i: number 
             +
           </motion.span>
         </div>
-
-        {/* badges — always visible, expand shows count label */}
-        <motion.div
-          className="mt-4 flex flex-wrap gap-2 overflow-hidden"
-          animate={{ height: expanded ? "auto" : "auto" }}
-        >
+        <motion.div className="mt-4 flex flex-wrap gap-2">
           <AnimatePresence initial={false}>
             {g.items.map((item, j) => (
               <motion.div
@@ -94,8 +85,6 @@ function SkillCard({ g, i }: { g: { group: string; items: string[] }; i: number 
             ))}
           </AnimatePresence>
         </motion.div>
-
-        {/* bottom count */}
         <motion.p
           className="mt-3 font-mono text-xs text-fg-subtle"
           animate={{ opacity: expanded ? 1 : 0.4 }}
@@ -108,13 +97,41 @@ function SkillCard({ g, i }: { g: { group: string; items: string[] }; i: number 
 }
 
 export function Stack() {
+  const allGroups = getSyncedSkillGroups();
+  const techGroups = allGroups.filter((g) => g.group !== CS_FUNDAMENTALS_GROUP);
+  const csGroup = allGroups.find((g) => g.group === CS_FUNDAMENTALS_GROUP);
+
   return (
-    <section className="mx-auto max-w-content px-6 py-16">
-      <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-        {getSyncedSkillGroups().map((g, i) => (
+    <section className="mx-auto max-w-content px-6 py-16 space-y-16">
+      {/* Technical Stack */}
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 items-start">
+        {techGroups.map((g, i) => (
           <SkillCard key={g.group} g={g} i={i} />
         ))}
       </div>
+
+      {/* CS Fundamentals — separate section */}
+      {csGroup && (
+        <RevealOnScroll>
+          <div className="rounded-xl border border-border bg-bg-elevated/40 p-6">
+            <div className="flex items-center gap-2 mb-5">
+              <span className="h-1.5 w-1.5 rounded-full bg-accent2" />
+              <h3 className="font-mono text-xs font-semibold uppercase tracking-widest text-fg">
+                CS Fundamentals
+              </h3>
+              <span className="font-mono text-xs text-fg-subtle ml-auto">{csGroup.items.length} subjects</span>
+            </div>
+            <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+              {csGroup.items.map((item) => (
+                <div key={item} className="flex items-center gap-2 text-sm text-fg-muted">
+                  <span className="h-px w-3 bg-border shrink-0" />
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
+        </RevealOnScroll>
+      )}
     </section>
   );
 }
