@@ -4,6 +4,7 @@ export type OSSContribution = {
   description: string;
   stars: string;
   link: string;
+  year?: string;
 };
 
 export const openSource: OSSContribution[] = [

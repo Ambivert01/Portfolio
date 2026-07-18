@@ -2,7 +2,7 @@ import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
 import type { Metadata } from "next";
 import { AboutSection } from "@/components/sections/AboutSection";
 import { EducationSection } from "@/components/sections/EducationSection";
-import { JourneyTimeline } from "@/components/sections/JourneyTimeline";
+import { InteractiveTimeline } from "@/components/sections/InteractiveTimeline";
 import { VisionSection } from "@/components/sections/VisionSection";
 import { LifeSection } from "@/components/sections/LifeSection";
 import { PressSection } from "@/components/sections/PressSection";
@@ -27,7 +27,7 @@ export default function AboutPage() {
       <AboutSection />
       <div className="mx-auto max-w-content px-6"><LanguagesSection /></div>
       <EducationSection />
-      <JourneyTimeline />
+      <InteractiveTimeline />
       <LeadershipSection />
       <SoftSkills />
       <VisionSection />

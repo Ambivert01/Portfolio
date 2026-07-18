@@ -148,6 +148,23 @@ body {
 .glow-accent {
   box-shadow: 0 0 24px hsl(var(--accent) / 0.35), 0 0 8px hsl(var(--accent) / 0.2);
 }
+/* custom scrollbar — theme matched */
+::-webkit-scrollbar {
+  height: 4px;
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: hsl(var(--bg-inset));
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--accent) / 0.4);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--accent) / 0.7);
+}
+
 .glow-accent2 {
   box-shadow: 0 0 24px hsl(var(--accent2) / 0.35), 0 0 8px hsl(var(--accent2) / 0.2);
 }
