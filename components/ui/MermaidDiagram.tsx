@@ -1,6 +1,6 @@
 "use client";
 
-import { forwardRef, useEffect, useImperativeHandle, useRef, useId } from "react";
+import { forwardRef, useEffect, useImperativeHandle, useRef, useId, useState } from "react";
 
 export type MermaidDiagramHandle = {
   zoomIn: () => void;
@@ -66,6 +66,7 @@ export const MermaidDiagram = forwardRef<MermaidDiagramHandle, { chart: string }
 
 
   const id = useId().replace(/:/g, "");
+  const [loading, setLoading] = useState(true);
 
 
   useEffect(() => {
@@ -117,6 +118,7 @@ export const MermaidDiagram = forwardRef<MermaidDiagramHandle, { chart: string }
           panRef.current = { x: 0, y: 0 };
 
           ref.current.innerHTML = svg;
+          setLoading(false);
 
           // Ensure the inserted SVG applies our transform state
           requestAnimationFrame(() => {
@@ -194,7 +196,14 @@ export const MermaidDiagram = forwardRef<MermaidDiagramHandle, { chart: string }
           className="flex min-h-[120px] items-center justify-center [&_svg]:mx-auto [&_svg]:max-w-full [&_svg]:max-h-[520px]"
           style={{ touchAction: "pan-y" }}
         >
-          {/* SVG injected here */}
+          {loading && (
+            <div className="w-full space-y-3 p-4">
+              <div className="h-3 w-3/4 animate-pulse rounded bg-bg-elevated" />
+              <div className="h-3 w-1/2 animate-pulse rounded bg-bg-elevated" />
+              <div className="h-3 w-2/3 animate-pulse rounded bg-bg-elevated" />
+              <div className="mt-4 h-24 w-full animate-pulse rounded bg-bg-elevated" />
+            </div>
+          )}
         </div>
       </div>
     </div>

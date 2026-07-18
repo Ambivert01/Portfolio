@@ -30,7 +30,18 @@ export function Hero() {
       <div className="mx-auto grid max-w-content grid-cols-1 gap-10 px-6 py-20 md:grid-cols-[1fr_280px] md:items-center md:py-28">
         <div>
           <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-            <SignalIndicator tone="amber" label="SYSTEM: ONLINE" />
+            <div className="flex items-center gap-3">
+              {/* mobile avatar — hidden on md+ where the full photo shows */}
+              <div className="relative md:hidden">
+                <div className="relative rounded-full p-[2px] bg-gradient-to-br from-accent via-accent2 to-accent/40">
+                  <div className="overflow-hidden rounded-full w-12 h-12">
+                    <Image src="/Profile.png" alt="Parth Prajapati" width={96} height={96} className="w-full h-full object-cover object-[center_8%]" priority />
+                  </div>
+                </div>
+                <span className="absolute -bottom-0.5 -right-0.5 h-3 w-3 rounded-full bg-gradient-to-br from-accent to-accent2" aria-hidden />
+              </div>
+              <SignalIndicator tone="amber" label="SYSTEM: ONLINE" />
+            </div>
           </motion.div>
 
           <h1 className="mt-6 flex max-w-3xl flex-wrap font-display text-4xl font-medium leading-[1.08] tracking-tight md:text-6xl">

@@ -6,14 +6,14 @@ import { siteConfig } from "@/content/site-config";
 import { SignalIndicator } from "@/components/ui/SignalIndicator";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { AccessibilityMenu } from "@/components/ui/AccessibilityMenu";
-import { Menu, X, Command } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 const links = [
   { href: "/work", label: "Work" },
   { href: "/about", label: "About" },
   { href: "/experience", label: "Experience" },
   { href: "/research", label: "Research" },
-  { href: "/writing", label: "Writing" },
+  // { href: "/writing", label: "Writing" }, // unhide when articles are added
   { href: "/achievements", label: "Achievements" },
   { href: "/stack", label: "Stack" },
   { href: "/contact", label: "Contact" },
@@ -43,12 +43,6 @@ export function Nav() {
 
         <div className="hidden items-center gap-4 lg:flex">
           <SignalIndicator tone="green" label={siteConfig.availability} />
-          <button
-            className="focus-ring flex items-center gap-1.5 rounded-sm border border-border px-2 py-1 font-mono text-[11px] text-fg-subtle"
-            onClick={() => window.dispatchEvent(new KeyboardEvent("keydown", { key: "k", metaKey: true }))}
-          >
-            <Command size={12} /> K
-          </button>
           <ThemeToggle />
           <AccessibilityMenu />
         </div>

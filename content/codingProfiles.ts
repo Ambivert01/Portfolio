@@ -6,10 +6,8 @@ export type CodingProfile = {
 };
 
 export const codingProfiles: CodingProfile[] = [
-  { platform: "GitHub", handle: "@yourhandle", stat: "[X repos · Y contributions/yr]", url: "https://github.com/yourhandle" },
-  { platform: "LeetCode", handle: "@yourhandle", stat: "[X problems solved]", url: "#" },
-  { platform: "Codeforces", handle: "@yourhandle", stat: "[Rating]", url: "#" },
-  { platform: "CodeChef", handle: "@yourhandle", stat: "[Rating]", url: "#" },
-  { platform: "HackerRank", handle: "@yourhandle", stat: "[Badges]", url: "#" },
-  { platform: "Kaggle", handle: "@yourhandle", stat: "[Tier / rank]", url: "#" },
+  { platform: "GitHub", handle: "@Ambivert01", stat: "", url: "https://github.com/Ambivert01" },
+  { platform: "LeetCode", handle: "—", stat: "Update soon", url: "#" },
+  { platform: "Codeforces", handle: "—", stat: "Update soon", url: "#" },
+  { platform: "HackerRank", handle: "—", stat: "Update soon", url: "#" },
 ];

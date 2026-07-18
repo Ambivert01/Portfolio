@@ -1,9 +1,9 @@
 export const siteConfig = {
   name: "Parth Prajapati",
   role: "AI / Full Stack Developer",
-  tagline: "Builds systems for critical infrastructure that have to be right by covering critical edge cases, not just fast .",
+  tagline: "Builds systems for critical infrastructure that have to be right by covering critical edge cases, not just fast.",
   description:
-    "Parth designs and ships production-grade systems for infrastructure-critical domains — currently building AidFlow, Disaster Management & Transparency System.",
+    "Designs and ships systems where failure has real consequences — AI maintenance platforms for railways, transparent disaster relief infrastructure, and parametric insurance for 12 million gig workers.",
   url: "https://portfolio-ambivert01.vercel.app",
   email: "prajapatiparth01.ab@gmail.com",
   phone: "",
@@ -13,9 +13,7 @@ export const siteConfig = {
     github: "https://github.com/Ambivert01",
     linkedin: "https://www.linkedin.com/in/parthprajapati01",
     twitter: "https://x.com/parth_2703",
-    medium: "https://medium.com/@yourhandle",
     devto: "https://dev.to/parthprajapati01",
-    youtube: "https://youtube.com/@yourhandle",
     instagram: "https://www.instagram.com/parthprajapati01",
   },
   resumeUrl: "/resume.pdf",

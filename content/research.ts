@@ -10,39 +10,42 @@ export type Publication = {
 
 export const publications: Publication[] = [
   {
-    title: "AI Research — Neuro Pragya Private Limited",
-    venue: "Industry Research",
+    title: "Applied AI Research — Neuro Pragya Private Limited",
+    venue: "Industry Research · Internship",
     year: "2026",
     role: "AI & Full Stack Developer",
     summary:
-      "Ongoing applied research as part of the AI & Full Stack Developer role at Neuro Pragya Private Limited. Work spans LLM integration, system architecture, and intelligent product development.",
+      "Ongoing applied research at Neuro Pragya Private Limited — a startup working at the intersection of AI and intelligent product development. Work spans LLM integration, system architecture design, and building production-grade AI-powered features.",
     status: "ongoing",
   },
   {
-    title: "RailMind — AI Platform Research",
-    venue: "Product Research",
+    title: "Multi-Agent LangGraph Architecture for Predictive Railway Signal Maintenance",
+    venue: "Technical Report",
     year: "2025",
-    role: "Founding Engineer",
+    role: "Author · Founding Engineer, RailMind",
     summary:
-      "Research underlying the RailMind AI platform — covering multi-phase architecture review, production readiness evaluation, and full-stack AI system design for infrastructure-critical domains.",
+      "Documents the design and evaluation of a 7-agent LangGraph pipeline that reduces railway signal failure investigation time from 4–8 hours to under 60 seconds. Covers multi-database coordination (PostgreSQL + Neo4j + Qdrant), topological risk propagation, and a 7-layer explainable decision synthesis model.",
+    link: "/RailMind/RailMind.pdf",
     status: "ongoing",
   },
   {
-    title: "AidFlow — Disaster Management & Transparency System",
-    venue: "Project Research",
+    title: "Programmable Humanitarian Finance: AI Verification and Blockchain Audit Trails for Disaster Relief",
+    venue: "Technical Report",
     year: "2025",
-    role: "Lead Engineer",
+    role: "Author · Lead Engineer, AidFlow AI",
     summary:
-      "Ongoing research into disaster response coordination, real-time resource allocation, and transparency mechanisms for government-backed relief systems.",
+      "Examines the architecture of a policy-governed humanitarian execution platform combining multi-agent AI eligibility verification, programmable relief wallets with category-enforced spending, and Merkle-anchored blockchain audit trails. Proposes a zero-trust financial model where accountability is an intrinsic system property rather than an organizational practice.",
+    link: "/AidFlow/AidFlow.pdf",
     status: "ongoing",
   },
   {
-    title: "GigShield — Platform Research",
-    venue: "Project Research",
+    title: "Parametric Income Protection for Gig Workers: Physics-Based Fraud Detection and Autonomous Claims Processing",
+    venue: "Technical Report",
     year: "2025",
-    role: "Lead Engineer",
+    role: "Author · Lead Engineer, GigShield",
     summary:
-      "Ongoing research into gig economy worker protection, smart contract-based escrow systems, and dispute resolution mechanisms for freelance platforms.",
+      "Presents a 7-layer fraud intelligence system combining GPS validation, device fingerprinting, behavioral biometrics, and Louvain network graph clustering for coordinated fraud ring detection. Introduces rain-adaptive scoring thresholds and a zero-touch parametric claims engine that settles payouts within 15 minutes of trigger verification.",
+    link: "/GigShield/gig.pdf",
     status: "ongoing",
   },
 ];

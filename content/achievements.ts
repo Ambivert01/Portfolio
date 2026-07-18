@@ -36,10 +36,28 @@ export const achievements: Achievement[] = [
     year: "2025",
     description: "Ranked among the Top 55 Ideas Nationwide at MSME Idea Hackathon 5.0, a Government of India initiative supporting entrepreneurial innovation across the MSME sector.",
   },
+  {
+    title: "State Rank 15 — Indian Talent National Olympiad (Cyber)",
+    org: "Indian Talent Olympiad",
+    year: "2018–19",
+    description: "Secured State Rank 15 in the Indian Talent National Olympiad (ITNO) competitive exam in Cyber. Awarded Excellence Certificate and Medal for outstanding performance among thousands of students who appeared for the exam statewide.",
+  },
+  {
+    title: "State Rank 21 — Indian Talent National Olympiad (Science)",
+    org: "Indian Talent Olympiad",
+    year: "2017–18",
+    description: "Secured State Rank 21 in the Indian Talent National Olympiad (ITNO) competitive exam in Science, demonstrating consistent excellence across consecutive years of appearing in the national-level olympiad examination.",
+  },
+  {
+    title: "Class Topper — Indian Talent Olympiad (Maths, Science, Cyber & Drawing)",
+    org: "Indian Talent Olympiad",
+    year: "School",
+    description: "Achieved Class Rank 1 in Mathematics, Science, Cyber, and Drawing in the Indian Talent National Olympiad (ITNO) competitive exam — securing top position across four distinct disciplines in the national-level olympiad examination.",
+  },
 ];
 
 export const now = {
-  building: "Behaviour Guardian",
+  building: "AidFlow AI",
   learning: "IELTS",
   location: "Vadodara",
   position: "4th Year · Parul University Student",

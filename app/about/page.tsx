@@ -6,6 +6,7 @@ import { JourneyTimeline } from "@/components/sections/JourneyTimeline";
 import { VisionSection } from "@/components/sections/VisionSection";
 import { LifeSection } from "@/components/sections/LifeSection";
 import { PressSection } from "@/components/sections/PressSection";
+import { SoftSkills } from "@/components/sections/SoftSkills";
 import { LeadershipSection } from "@/components/sections/LeadershipSection";
 import { LanguagesSection } from "@/components/sections/LanguagesSection";
 import { FunFactsSection } from "@/components/sections/FunFactsSection";
@@ -28,6 +29,7 @@ export default function AboutPage() {
       <EducationSection />
       <JourneyTimeline />
       <LeadershipSection />
+      <SoftSkills />
       <VisionSection />
       <LifeSection />
       <ConsumingSection />
