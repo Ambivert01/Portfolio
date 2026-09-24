@@ -17,15 +17,15 @@ export const leadership: LeadershipItem[] = [
   {
     org: "Hackathon Teams — Multiple National-Level Competitions",
     role: "Team Lead",
-    period: "2025 — Present",
+    period: "2024 — Present",
     type: "leadership",
-    description: "Led teams across multiple national hackathons including Hacksagon 2026, East India Blockchain Summit 2.0, ET GEN-AI Hackathon, and MSME Idea Hackathon 5.0. Responsible for team direction, problem framing, solution architecture, and final presentation.",
+    description: "Led teams across 10+ hackathons at national level and beyond. Drove problem framing, architecture decisions, and final presentations while fostering open collaboration — ensuring every team member's ideas were heard, tasks were owned, and we moved fast as one unit.",
   },
   {
     org: "Technical Event Cell — Parul University",
     role: "Associated Member",
-    period: "2023 — Present",
-    type: "volunteering",
-    description: "Associated with the Technical Event Cell at Parul University, contributing to the organization and execution of technical events, competitions, and workshops on campus.",
+    period: "2024 — 2025",
+    type: "community",
+    description: "Connected with the Technical Event Cell at Parul University, which regularly shared hackathon and competition opportunities. Actively participated in those events, shared ideas with peers, and stayed engaged with the broader tech community on campus.",
   },
 ];

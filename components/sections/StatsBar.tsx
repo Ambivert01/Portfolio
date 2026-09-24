@@ -5,15 +5,19 @@ import { achievements } from "@/content/achievements";
 import { publications } from "@/content/research";
 
 const projectCount = projects.length + "+";
-const hackathonFinals = achievements.filter((a) =>
-  a.title.toLowerCase().includes("finalist") || a.title.toLowerCase().includes("final")
+const hackathonAchievements = achievements.filter((a) =>
+  a.title.toLowerCase().includes("finalist") ||
+  a.title.toLowerCase().includes("final") ||
+  a.title.toLowerCase().includes("semi-finalist") ||
+  a.title.toLowerCase().includes("winner") ||
+  (a.title.toLowerCase().includes("rank") && !a.title.toLowerCase().includes("state rank"))
 ).length;
 const ongoingResearch = publications.filter((p) => p.status === "ongoing").length;
 const yearsBuilding = new Date().getFullYear() - 2024 || 1;
 
 const stats = [
   { value: projectCount, label: "Projects Shipped" },
-  { value: String(hackathonFinals), label: "Hackathon Finals" },
+  { value: String(hackathonAchievements), label: "Hackathon Achievements" },
   { value: `${yearsBuilding}+`, label: "Years Building" },
   { value: String(ongoingResearch), label: "Ongoing Research" },
 ];

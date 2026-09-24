@@ -77,7 +77,10 @@ export function Hero() {
               <Button href="/work">View work</Button>
             </Magnetic>
             <Magnetic strength={0.2}>
-              <Button href={siteConfig.resumeUrl} variant="secondary">Download resume</Button>
+              <Button href="/about" variant="secondary" className="bg-gradient-to-r from-accent2 to-purple-500 !text-white font-semibold border-0 shadow-lg hover:opacity-90 hover:shadow-accent2/30 hover:shadow-xl">My Journey</Button>
+            </Magnetic>
+            <Magnetic strength={0.2}>
+              <Button href={siteConfig.resumeUrl} variant="secondary" className="bg-gradient-to-r from-cyan-500 to-blue-500 !text-white font-semibold border-0 shadow-lg hover:opacity-90 hover:shadow-cyan-500/30 hover:shadow-xl">Download resume</Button>
             </Magnetic>
           </motion.div>
         </div>
@@ -95,13 +98,13 @@ export function Hero() {
             <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-accent/30 via-accent2/20 to-transparent blur-2xl" aria-hidden />
             {/* gradient border ring */}
             <div className="relative rounded-3xl p-[2px] bg-gradient-to-br from-accent via-accent2 to-accent/40">
-              <div className="overflow-hidden rounded-3xl bg-bg-inset w-[260px] h-[340px]">
+              <div className="overflow-hidden rounded-3xl bg-transparent w-[260px] h-[340px]">
                 <Image
                   src="/Profile.png"
                   alt="Professional photo"
                   width={896}
                   height={1196}
-                  className="w-full h-full object-cover object-[center_8%]"
+                  className="w-full h-full object-contain object-center"
                   priority
                 />
               </div>

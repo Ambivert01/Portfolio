@@ -18,11 +18,8 @@ export function FeaturedWork() {
       </RevealOnScroll>
       <div className="flex flex-col gap-6">
         {featured.map((p) => (
-          <div key={p.slug} className="relative">
-            <ProjectCard project={p} />
-          </div>
+          <ProjectCard key={p.slug} project={p} />
         ))}
-
       </div>
 
     </section>

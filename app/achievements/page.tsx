@@ -1,7 +1,6 @@
 import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
 import type { Metadata } from "next";
 import { AchievementsSection } from "@/components/sections/AchievementsSection";
-import { CertificationsSection } from "@/components/sections/CertificationsSection";
 
 export const metadata: Metadata = { title: "Achievements" };
 
@@ -12,7 +11,6 @@ export default function AchievementsPage() {
         <RevealOnScroll><h1 className="font-display text-4xl font-medium">Achievements</h1></RevealOnScroll>
       </div>
       <AchievementsSection />
-      <CertificationsSection />
     </>
   );
 }
